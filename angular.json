@@ -1,0 +1,143 @@
+{
+  "$schema"        : "./node_modules/@angular/cli/lib/config/schema.json",
+  "version"        : 1,
+  "newProjectRoot" : "projects",
+  "projects"       : {
+    "core-14" : {
+      "projectType" : "application",
+      "schematics"  : {
+        "@schematics/angular:application" : {
+          "strict" : true
+        },
+        "@schematics/angular:class"       : {
+          "skipTests" : true
+        },
+        "@schematics/angular:component"   : {
+          "skipTests" : true
+        },
+        "@schematics/angular:directive"   : {
+          "skipTests" : true
+        },
+        "@schematics/angular:guard"       : {
+          "skipTests" : true
+        },
+        "@schematics/angular:interceptor" : {
+          "skipTests" : true
+        },
+        "@schematics/angular:pipe"        : {
+          "skipTests" : true
+        },
+        "@schematics/angular:service"     : {
+          "skipTests" : true
+        }
+      },
+      "root"        : "",
+      "sourceRoot"  : "src",
+      "prefix"      : "app",
+      "architect"   : {
+        "build"        : {
+          "builder"              : "@angular-devkit/build-angular:browser",
+          "options"              : {
+            "outputPath"                  : "dist/core-14",
+            "index"                       : "src/index.html",
+            "main"                        : "src/main.ts",
+            "polyfills"                   : "src/polyfills.ts",
+            "tsConfig"                    : "tsconfig.app.json",
+            "assets"                      : [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles"                      : [
+              "src/custom-theme.scss",
+              "node_modules/viewerjs/dist/viewer.css",
+              "node_modules/plyr/dist/plyr.css",
+              "src/styles.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/uicon.css",
+              "src/assets/css/font-awesome.min.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "src/app/modules/admin/features/ovic-message/assets/css/style.css",
+              "src/assets/css/admin-dashboard.css",
+              "src/assets/css/base.css",
+              "src/assets/css/animation-loading.css",
+              "src/assets/css/style.css"
+            ],
+            "scripts"                     : [],
+            "allowedCommonJsDependencies" : ["crypto-js", "ng2-pdf-viewer", "pdfjs-dist/build/pdf", "pdfjs-dist/web/pdf_viewer"]
+          },
+          "configurations"       : {
+            "production"  : {
+              "budgets"          : [
+                {
+                  "type"           : "initial",
+                  "maximumWarning" : "500kb",
+                  "maximumError"   : "1mb"
+                },
+                {
+                  "type"           : "anyComponentStyle",
+                  "maximumWarning" : "2kb",
+                  "maximumError"   : "4kb"
+                }
+              ],
+              "fileReplacements" : [
+                {
+                  "replace" : "src/environments/environment.ts",
+                  "with"    : "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing"    : "all"
+            },
+            "development" : {
+              "buildOptimizer"  : false,
+              "optimization"    : false,
+              "vendorChunk"     : true,
+              "extractLicenses" : false,
+              "sourceMap"       : true,
+              "namedChunks"     : true
+            }
+          },
+          "defaultConfiguration" : "production"
+        },
+        "serve"        : {
+          "builder"              : "@angular-devkit/build-angular:dev-server",
+          "configurations"       : {
+            "production"  : {
+              "browserTarget" : "core-14:build:production"
+            },
+            "development" : {
+              "browserTarget" : "core-14:build:development",
+              "sslKey"        : "localhost.key",
+              "sslCert"       : "localhost.crt"
+            }
+          },
+          "defaultConfiguration" : "development"
+        },
+        "extract-i18n" : {
+          "builder" : "@angular-devkit/build-angular:extract-i18n",
+          "options" : {
+            "browserTarget" : "core-14:build"
+          }
+        },
+        "test"         : {
+          "builder" : "@angular-devkit/build-angular:karma",
+          "options" : {
+            "main"        : "src/test.ts",
+            "polyfills"   : "src/polyfills.ts",
+            "tsConfig"    : "tsconfig.spec.json",
+            "karmaConfig" : "karma.conf.js",
+            "assets"      : [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles"      : [
+              "src/styles.css"
+            ],
+            "scripts"     : []
+          }
+        }
+      }
+    }
+  }
+}

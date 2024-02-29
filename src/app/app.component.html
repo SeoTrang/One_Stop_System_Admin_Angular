@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+<div class="app-wrap-loading-animation" *ngIf="isLoading">
+    <div class="app-loading-animation__sk-chase">
+        <div class="app-loading-animation__sk-chase__dot"></div>
+        <div class="app-loading-animation__sk-chase__dot"></div>
+        <div class="app-loading-animation__sk-chase__dot"></div>
+        <div class="app-loading-animation__sk-chase__dot"></div>
+        <div class="app-loading-animation__sk-chase__dot"></div>
+        <div class="app-loading-animation__sk-chase__dot"></div>
+    </div>
+</div>
+<p-toast position="bottom-right" [baseZIndex]="999999999"></p-toast>
+<div class="--element-check-height-viewport" #checkViewPortHeight></div>

@@ -1,0 +1,46 @@
+<div class="sidenav" [ngClass]="collapsed ? 'sidenav-collapsed': ''">
+<!--    <div class="logo-container">-->
+<!--        <button class="logo" (click)="toggleCollapse()">A</button>-->
+<!--        <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>-->
+<!--        <button class="btn-close" @rotate *ngIf="collapsed" (click)="closeSidenav()">-->
+<!--            <i class="fal fa-times close-icon"></i>-->
+<!--        </button>-->
+<!--    </div>-->
+    <ul class="sidenav-nav">
+        <li class="sidenav-nav-item" *ngFor="let node of navData">
+            <button *ngIf="!node.routeLink" class="sidenav-nav-link" (click)="expandedChild(node)">
+                <i class="sidenav-link-icon" [class]="node.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{node.label}}</span>
+                <span class="sidenav-nav-item__caret"><i class="fi-rr-caret-down" [@caretMenu]="node.state"></i></span>
+            </button>
+            <button *ngIf="node.routeLink" class="sidenav-nav-link" [routerLink]="[node.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="sidenav-link-icon" [class]="node.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{node.label}}</span>
+            </button>
+            <ul class="sidenav-nav --child --child-lever-1" *ngIf="collapsed && node.children && node.children.length > 0" [@menuState]="node.state">
+                <li class="sidenav-nav-item" *ngFor="let sub1 of node.children">
+                    <button *ngIf="!sub1.routeLink" class="sidenav-nav-link" (click)="expandedChild(sub1)">
+                        <i class="sidenav-link-icon" [class]="sub1.icon"></i>
+                        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{sub1.label}}</span>
+                    </button>
+                    <button *ngIf="sub1.routeLink" class="sidenav-nav-link" [routerLink]="[sub1.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="sidenav-link-icon" [class]="sub1.icon"></i>
+                        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{sub1.label}}</span>
+                    </button>
+                    <ul class="sidenav-nav --child --child-lever-2" *ngIf="sub1.children && sub1.children.length > 0" [@menuState]="sub1.state">
+                        <li class="sidenav-nav-item" *ngFor="let sub2 of sub1.children">
+                            <button *ngIf="!sub2.routeLink" class="sidenav-nav-link" (click)="expandedChild(sub2)">
+                                <i class="sidenav-link-icon" [class]="sub2.icon"></i>
+                                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{sub2.label}}</span>
+                            </button>
+                            <button *ngIf="sub2.routeLink" class="sidenav-nav-link" [routerLink]="[sub2.routeLink]" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <i class="sidenav-link-icon" [class]="sub2.icon"></i>
+                                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{sub2.label}}</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
