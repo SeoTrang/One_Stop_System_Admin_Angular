@@ -1,0 +1,11 @@
+#rbac .box-right{
+
+}
+
+@media screen and (min-width: 768px){
+    #rbac .box-right .content-box{
+        max-height: 80vh;
+        overflow-y: scroll;
+        
+    }
+}

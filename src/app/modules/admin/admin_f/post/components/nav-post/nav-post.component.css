@@ -1,0 +1,38 @@
+#nav-post li a{
+    display: flex;
+    align-items: center;
+    color: #333333;
+    cursor: pointer;
+    margin-bottom: 8px;
+    padding: 8px 0px 8px 8px;
+}
+
+#nav-post li a:hover{
+    text-decoration: none;
+    background-color: #f9fafa;
+}
+
+#nav-post li a.nav-item-active{
+    background-color: #f1f2f3;
+    font-weight: 500;
+}
+
+#nav-post li .icon{
+    width: 20px;
+}
+
+
+/* recommend */
+#nav-post .recommend .box-popular-tags .list-tags{
+    display: flex;
+    flex-wrap: wrap;
+}   
+
+#nav-post .recommend .box-popular-tags .tag{
+    background-color: #edf5fd;
+    color: #155ca2;
+    padding: 3px 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}

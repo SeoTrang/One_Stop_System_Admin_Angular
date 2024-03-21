@@ -147,7 +147,7 @@ export class LoginV2Component implements OnInit , OnDestroy {
 		this.currentLoginButton = button;
 		if ( button.name === 'signIn' && this.loginForm.valid ) {
 			const signInfo = {
-				username : this.loginForm.controls[ 'username' ].value ,
+				identifier : this.loginForm.controls[ 'identifier' ].value ,
 				password : this.loginForm.controls[ 'password' ].value
 			};
 			this.login$.next( signInfo );

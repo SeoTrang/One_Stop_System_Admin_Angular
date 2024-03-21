@@ -1,0 +1,65 @@
+.login-wrap-animation {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 50;
+	background-color: rgba(255, 255, 255, .9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-wrap-animation__inner {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	margin: 0;
+	padding: 0;
+}
+
+.login-wrap-animation__inner_gear-1 {
+	position: absolute;
+	top: 10%;
+	left: 0;
+	background: url('../../../../../assets/images/gear-c1.png') no-repeat center / cover;
+	width: 50px;
+	height: 50px;
+	animation: animation_gear_1 2.5s linear infinite;
+	user-select: none;
+}
+
+.login-wrap-animation__inner_gear-2 {
+	position: absolute;
+	top: 20%;
+	left: 43%;
+	width: 50px;
+	height: 50px;
+	background: url('../../../../../assets/images/gear-c2.png') no-repeat center / cover;
+	animation: animation_gear_2 2.5s linear infinite;
+	user-select: none;
+}
+
+.login-wrap-animation__inner_gear-3 {
+	position: absolute;
+	top: 60%;
+	left: 30%;
+	background: url('../../../../../assets/images/gear-c3.png') no-repeat center / cover;
+	width: 30px;
+	height: 30px;
+	animation: animation_gear_1 2.5s linear infinite;
+	user-select: none;
+}
+
+@keyframes animation_gear_1 {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes animation_gear_2 {
+	to {
+		transform: rotate(-360deg);
+	}
+}

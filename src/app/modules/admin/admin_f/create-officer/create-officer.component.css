@@ -1,0 +1,85 @@
+#create-officer .content-box{
+    width: 98%;
+}
+#create-officer .content{
+    color: #919eab;
+}
+
+#create-officer .avatar-default{
+    width: 126px;
+    height: 126px;
+    background-color: #919eab14;
+    border-radius: 50%;
+    
+}
+
+#create-officer  .cicler-item{
+    border-radius: 50%;
+}
+
+#create-officer .avatar-value{
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+}
+#create-officer .avatar-value img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#create-officer .p-treeselect-label{
+    color: #495057;
+}
+
+#create-officer .p-placeholder{
+    color: #495057 !important;
+    opacity: 1;
+}
+
+
+@media (min-width: 640px) {
+    #create-officer .box-right input{
+        width: 95% !important;
+    }
+    /* #create-officer .box-right .p-element .p-inputwrapper{
+        width: 100% !important;
+    } */
+
+    #create-officer .box-right .p-element .p-inputwrapper{
+        width: 95% !important;
+    }
+
+    #create-officer .box-right p-password input{
+        width: 100% !important;
+    }
+
+    /* [formGroup] = "createOfficerForm" */
+
+    /* #create-officer .box-right .p-password-input{
+        width: 95% !important;
+    } */
+    #create-officer .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+    
+}
+@media (max-width: 639px) {
+    #create-officer .box-right input{
+        width: 100% !important;
+    }
+
+    #create-officer .box-right .p-password-input{
+        width: 100% !important;
+    }
+
+    #create-officer .box-right .p-inputwrapper{
+        width: 100% !important;
+    }
+
+    #create-officer .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+}
+

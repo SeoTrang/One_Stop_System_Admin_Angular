@@ -1,4 +1,11 @@
 <router-outlet></router-outlet>
+<div class="login-wrap-animation"  *ngIf="loadingService.loading$ | async">
+    <div class="login-wrap-animation__inner">
+        <div class="login-wrap-animation__inner_gear-1"></div>
+        <div class="login-wrap-animation__inner_gear-2"></div>
+        <div class="login-wrap-animation__inner_gear-3"></div>
+    </div>
+</div>
 <div class="app-wrap-loading-animation" *ngIf="isLoading">
     <div class="app-loading-animation__sk-chase">
         <div class="app-loading-animation__sk-chase__dot"></div>

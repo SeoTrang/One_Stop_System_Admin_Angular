@@ -4,6 +4,7 @@ import { ContentNoneComponent } from '@modules/admin/features/content-none/conte
 import { DashboardComponent } from '@modules/admin/dashboard/dashboard.component';
 import { NewHomeComponent } from '@modules/admin/features/new-home/new-home.component';
 import { AdminGuard } from '@core/guards/admin.guard';
+import { OfficerComponent } from './admin_f/officer/officer.component';
 
 const routes : Routes = [
 	{
@@ -19,24 +20,30 @@ const routes : Routes = [
 				path      : 'content-none' ,
 				component : ContentNoneComponent
 			} ,
-			{
-				path         : 'he-thong' ,
-				loadChildren : () => import('@modules/admin/features/he-thong/he-thong.module').then( m => m.HeThongModule )
-			} ,
+			// {
+			// 	path         : 'he-thong' ,
+			// 	loadChildren : () => import('@modules/admin/features/he-thong/he-thong.module').then( m => m.HeThongModule )
+			// } ,
 			{
 				path         : 'message' ,
 				loadChildren : () => import('@modules/admin/features/ovic-message/ovic-message.module').then( m => m.OvicMessageModule )
 			} ,
 			{
-				path       : '' ,
-				redirectTo : '/admin/dashboard' ,
-				pathMatch  : 'prefix'
-			} ,
-			{
-				path       : '**' ,
-				redirectTo : '/admin/content-none' ,
-				pathMatch  : 'prefix'
-			}
+				path: 'admin',
+				// canActivateChild : [ AdminGuard ],
+				loadChildren: () => import('@modules/admin/admin_f/admin-f.module').then( m => m.AdminFModule )
+
+			},
+			// {
+			// 	path       : '' ,
+			// 	redirectTo : '/manager/dashboard' ,
+			// 	pathMatch  : 'prefix'
+			// } ,
+			// {
+			// 	path       : '**' ,
+			// 	redirectTo : '/manager/content-none' ,
+			// 	pathMatch  : 'prefix'
+			// }
 		]
 	}
 ];

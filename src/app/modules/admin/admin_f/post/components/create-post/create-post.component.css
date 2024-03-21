@@ -1,0 +1,16 @@
+#create-post textarea {
+    border: none; /* Loại bỏ viền */
+    outline: none; /* Loại bỏ viền xanh khi focus */
+}
+
+#create-post textarea:focus {
+    border: none !important; /* Loại bỏ viền khi focus */
+    outline: none !important; /* Loại bỏ viền xanh khi focus */
+    box-shadow: none;
+}
+
+
+#create-post .content-input{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

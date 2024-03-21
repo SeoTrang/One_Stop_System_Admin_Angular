@@ -26,6 +26,16 @@ import { OvicMessageModule } from '@modules/admin/features/ovic-message/ovic-mes
 import { NewHomeComponent } from '@modules/admin/features/new-home/new-home.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+// import { OfficerComponent } from './admin_f/officer/officer.component';
+// import { StudentComponent } from './admin_f/student/student.component';
+import { ServiceComponent } from './admin_f/service/service.component';
+// import { DepartmentComponent } from './admin_f/department/department.component';
+// import { FormAutoComponent } from './admin_f/form-auto/form-auto.component';
+// import { DocumentComponent } from './admin_f/document/document.component';
+import { PostComponent } from './common-page/post/post.component';
+import { QuestionComponent } from './common-page/question/question.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { TableModule } from 'primeng/table';
 
 @NgModule( {
 	declarations : [
@@ -35,7 +45,15 @@ import { FormsModule } from '@angular/forms';
 		SidenavComponent ,
 		UserInfoComponent ,
 		MenuLanguageComponent ,
-		NewHomeComponent
+		NewHomeComponent,
+		// OfficerComponent,
+		// StudentComponent,
+		// ServiceComponent,
+		// DepartmentComponent,
+		// FormAutoComponent,
+		// DocumentComponent,
+		PostComponent,
+		QuestionComponent
 	] ,
 	imports      : [
 		CommonModule ,
@@ -55,7 +73,9 @@ import { FormsModule } from '@angular/forms';
 		TranslateModule ,
 		OvicMessageModule ,
 		DropdownModule ,
-		FormsModule
+		FormsModule,
+		MultiSelectModule,
+		TableModule
 	]
 } )
 export class AdminModule {}

@@ -1,0 +1,141 @@
+<div id="create-officer" class="w-full">
+    <div class="title flex justify-between font-medium items-center ">
+        <div class="title-left flex text-xl">
+            <div class="icon">
+                <i class="pi pi-fw pi-users" style="font-size: 1em; font-weight: 500;" ></i>
+            </div>
+            <div class="text-value ml-1">
+                Thêm cán bộ giảng viên
+            </div>
+        </div>
+
+        <div class="title-right">
+            <a routerLink="/manager/admin/officer" class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-arrow-left"></i>
+                <span>
+                    Quay lại
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Thêm cán bộ</span>
+        </div>
+    </div>
+
+    <div class="container-content-create-officer w-full">
+        <div class="container-content mt-3 w-full md:flex">
+            <div class="box-left  w-full md:w-4/12 mb-2 md:flex md:justify-start">
+                <div class="content-box content-box-left bg-white rounded-md pl-3 pr-3 pt-3 pb-3 flex items-center justify-center">
+                    <div class="content">
+                        <div class="avatar flex items-center justify-center">
+                            <input class="hidden" id="avatar" type="file" accept="*.jpeg, *.jpg, *.png," (change)="onFileSelectedAvatar($event)">
+                            <label for="avatar" class="cursor-pointer">
+                                <div class="cicler-item border-dotted border-2 border-gray-300 p-1 flex items-center justify-center">
+                                    <div *ngIf="!avatar" class="avatar-default flex items-center justify-center">
+                                        <div class=" flex justify-center items-center flex-col">
+                                            <div>
+                                                <i class="pi pi-camera" style="font-size: 20px;"></i>
+                                            </div>
+                                            <div>Chọn ảnh</div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="avatar" class="avatar-value">
+                                        <img [src]="avatar" alt="">
+
+                                    </div>
+                                    
+                                </div>
+                                
+                            </label>
+                        </div>
+                        <div class="type-file flex justify-center mt-2">
+                            <span class="text-sm">
+                                Định dạng *.jpeg, *.jpg, *.png
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-right  w-full md:w-8/12 mb-2 md:flex md:justify-end">
+                <div class="content-box content-box-right bg-white rounded-md pl-3 pr-3 pt-3 pb-3">
+                    <div  class="content">
+                        <form action="#" [formGroup] = "createOfficerForm">
+                            <div class="line-items-field sm:flex">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="identifier" formControlName="identifier" />
+                                        <label for="identifier">Mã</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="name" formControlName="name" />
+                                        <label for="name">Họ tên</label>
+                                    </span>
+                                </div>
+                            </div>
+    
+                            <div class="line-items-field sm:flex">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="address" formControlName="address" />
+                                        <label for="address">Địa chỉ</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <p-treeSelect formControlName="gender" [options]="genders" placeholder="Giới tính"></p-treeSelect>
+                                    </span>
+                                </div>
+                            </div>
+    
+    
+                            <div class="line-items-field sm:flex ">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText type="email" id="email" formControlName="email" />
+                                        <label for="email">Email</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <p-treeSelect [options]="dataDepartments" formControlName="department_id" placeholder="Phòng ban"></p-treeSelect>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="line-items-field sm:flex ">
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <p-password [toggleMask]="true"  [(ngModel)]="password" [feedback]="true"></p-password>
+                                    <label for="password">Mật khẩu</label>
+                                </span>
+                            </div>
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <p-password [toggleMask]="true"  [(ngModel)]="confirmPassword" [feedback]="true"></p-password>
+                                    <label for="password">Nhập lại mật khẩu</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-save flex">
+                        <div (click)="btnAddOfficer()" class=" button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                            <!-- <i class="pi pi-arrow-left"></i> -->
+                            <span>
+                                Thêm cán bộ
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

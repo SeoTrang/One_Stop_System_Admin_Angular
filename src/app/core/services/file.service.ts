@@ -127,34 +127,34 @@ export class FileService {
 	 * ********************************************************/
 	uploadFile( file , donvi_id : number = 0 , user_id : number = 0 ) : Observable<OvicFileSever> {
 		const params = new HttpParams().set( 'donvi_id' , donvi_id.toString() ).set( 'user_id' , user_id.toString() );
-		return this.http.post<Dto>( this.media , FileService.packetFiles( [ file ] ) , { params : params } ).pipe(
+		return this.http.post<any>( this.media , FileService.packetFiles( [ file ] ) , { params : params } ).pipe(
 			retry( 2 ) ,
 			map( res => res.data[ 0 ] )
 		);
 	}
 
-	uploadMultipleFiles( files : File[] , donvi_id : number = 0 , user_id : number = 0 ) : Observable<OvicFileSever[]> {
-		const params = new HttpParams().set( 'donvi_id' , donvi_id.toString() ).set( 'user_id' , user_id.toString() );
-		return this.http.post<Dto>( this.media , FileService.packetFiles( files ) , { params : params } ).pipe(
-			retry( 2 ) ,
-			map( res => res.data )
-		);
-	}
+	// uploadMultipleFiles( files : File[] , donvi_id : number = 0 , user_id : number = 0 ) : Observable<OvicFileSever[]> {
+	// 	const params = new HttpParams().set( 'donvi_id' , donvi_id.toString() ).set( 'user_id' , user_id.toString() );
+	// 	return this.http.post<Dto>( this.media , FileService.packetFiles( files ) , { params : params } ).pipe(
+	// 		retry( 2 ) ,
+	// 		map( res => res.data )
+	// 	);
+	// }
 
-	uploadFileWidthProgress( file , donvi_id : number = 0 , user_id : number = 0 ) : Observable<Upload> {
-		const params                = new HttpParams().set( 'donvi_id' , donvi_id.toString() ).set( 'user_id' , user_id.toString() );
-		const initialState : Upload = { state : 'PENDING' , progress : 0 };
-		const calculateState        = ( upload : Upload , event : HttpEvent<unknown> ) : Upload => {
-			if ( this.isHttpProgressEvent( event ) ) {
-				return { progress : event.total ? Math.round( ( 100 * event.loaded ) / event.total ) : upload.progress , state : 'IN_PROGRESS' };
-			}
-			if ( this.isHttpResponse( event ) ) {
-				return { progress : 100 , state : 'DONE' };
-			}
-			return upload;
-		};
-		return this.http.post( this.media , FileService.packetFiles( [ file ] ) , { params : params , reportProgress : true } ).pipe( scan( calculateState , initialState ) );
-	}
+	// uploadFileWidthProgress( file , donvi_id : number = 0 , user_id : number = 0 ) : Observable<Upload> {
+	// 	const params                = new HttpParams().set( 'donvi_id' , donvi_id.toString() ).set( 'user_id' , user_id.toString() );
+	// 	const initialState : Upload = { state : 'PENDING' , progress : 0 };
+	// 	const calculateState        = ( upload : Upload , event : HttpEvent<unknown> ) : Upload => {
+	// 		if ( this.isHttpProgressEvent( event ) ) {
+	// 			return { progress : event.total ? Math.round( ( 100 * event.loaded ) / event.total ) : upload.progress , state : 'IN_PROGRESS' };
+	// 		}
+	// 		if ( this.isHttpResponse( event ) ) {
+	// 			return { progress : 100 , state : 'DONE' };
+	// 		}
+	// 		return upload;
+	// 	};
+	// 	return this.http.post( this.media , FileService.packetFiles( [ file ] ) , { params : params , reportProgress : true } ).pipe( scan( calculateState , initialState ) );
+	// }
 
 	updateFileInfo( id : number , info : { title? : string; donvi_id? : number; user_id? : number; shared? : string } ) : Observable<number> {
 		return this.http.put<Dto>( ''.concat( this.media , id.toString() ) , info ).pipe( map( res => res.data ) );

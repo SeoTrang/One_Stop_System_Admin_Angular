@@ -540,53 +540,54 @@ export class OvicFileExplorerComponent implements OnInit {
 	 * onFileInput functions
 	 * *****************************************************/
 	async onFileInput( $event , fileChooser : HTMLInputElement ) {
-		this.errorMaxFileUploading = false;
-		this.uploadingFiles        = [].concat( this.uploadingFiles , this.validateFiles( $event ) );
-		fileChooser.value          = '';
-		const validateFiles        = this.uploadingFiles.filter( f => f.validate );
-		if ( validateFiles.length > this.maxUploadingFiles ) {
-			this.errorMaxFileUploading = true;
-			setTimeout( () => this.uploadingFiles = [] , 5000 );
-		} else {
-			validateFiles.forEach( ( file , index ) => {
-				if ( this.server === 'serverFile' ) {
-					setTimeout( () => {
-						this.fileService.uploadFileWidthProgress( file.file , this.auth.user.donvi_id , this.auth.user.id ).subscribe(
-							{
-								next  : () => {
-									file.uploaded = true;
-									file.message  = 'Upload thành công';
-									setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
-									this.reloadData( 1000 );
-								} ,
-								error : () => {
-									file.validate = false;
-									file.message  = 'Upload thất bại';
-								}
-							}
-						);
-					} , 50 * index );
-				} else {
-					setTimeout( () => {
-						// this.fileService.gdUploadFile( file.file ).subscribe(
-						this.fileService.googleDriveUploadFileToParents( file.file , this.auth.cloudStore ).subscribe(
-							{
-								next  : () => {
-									file.uploaded = true;
-									file.message  = 'Upload thành công';
-									setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
-									this.reloadData( 1000 );
-								} ,
-								error : () => {
-									file.validate = false;
-									file.message  = 'Upload thất bại';
-								}
-							}
-						);
-					} , 50 * index );
-				}
-			} );
-		}
+		// ====> comment
+		// this.errorMaxFileUploading = false;
+		// this.uploadingFiles        = [].concat( this.uploadingFiles , this.validateFiles( $event ) );
+		// fileChooser.value          = '';
+		// const validateFiles        = this.uploadingFiles.filter( f => f.validate );
+		// if ( validateFiles.length > this.maxUploadingFiles ) {
+		// 	this.errorMaxFileUploading = true;
+		// 	setTimeout( () => this.uploadingFiles = [] , 5000 );
+		// } else {
+		// 	validateFiles.forEach( ( file , index ) => {
+		// 		if ( this.server === 'serverFile' ) {
+		// 			setTimeout( () => {
+		// 				this.fileService.uploadFileWidthProgress( file.file , this.auth.user.id ).subscribe(
+		// 					{
+		// 						next  : () => {
+		// 							file.uploaded = true;
+		// 							file.message  = 'Upload thành công';
+		// 							setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
+		// 							this.reloadData( 1000 );
+		// 						} ,
+		// 						error : () => {
+		// 							file.validate = false;
+		// 							file.message  = 'Upload thất bại';
+		// 						}
+		// 					}
+		// 				);
+		// 			} , 50 * index );
+		// 		} else {
+		// 			setTimeout( () => {
+		// 				// this.fileService.gdUploadFile( file.file ).subscribe(
+		// 				this.fileService.googleDriveUploadFileToParents( file.file , this.auth.cloudStore ).subscribe(
+		// 					{
+		// 						next  : () => {
+		// 							file.uploaded = true;
+		// 							file.message  = 'Upload thành công';
+		// 							setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
+		// 							this.reloadData( 1000 );
+		// 						} ,
+		// 						error : () => {
+		// 							file.validate = false;
+		// 							file.message  = 'Upload thất bại';
+		// 						}
+		// 					}
+		// 				);
+		// 			} , 50 * index );
+		// 		}
+		// 	} );
+		// }
 	}
 
 	/**************************************************

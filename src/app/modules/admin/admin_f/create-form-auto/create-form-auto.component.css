@@ -1,0 +1,181 @@
+#create-form-auto .content-box{
+    width: 98%;
+}
+#create-form-auto .content{
+    color: #919eab;
+}
+
+#create-form-auto .avatar-default{
+    width: 126px;
+    height: 126px;
+    background-color: #919eab14;
+    border-radius: 50%;
+    
+}
+
+#create-form-auto  .cicler-item{
+    border-radius: 50%;
+}
+
+#create-form-auto .avatar-value{
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+}
+#create-form-auto .avatar-value img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#create-form-auto .p-treeselect-label{
+    color: #495057;
+}
+
+#create-form-auto .p-placeholder{
+    color: #495057 !important;
+    opacity: 1;
+}
+
+
+@media (min-width: 640px) {
+    #create-form-auto input{
+        width: 95% !important;
+    }
+    /* #create-form-auto .p-element .p-inputwrapper{
+        width: 100% !important;
+    } */
+
+    #create-form-auto .p-element .p-inputwrapper{
+        width: 95% !important;
+    }
+
+    #create-form-auto p-password input{
+        width: 100% !important;
+    }
+
+    /* #create-form-auto .p-password-input{
+        width: 95% !important;
+    } */
+    #create-form-auto .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+    
+}
+@media (max-width: 639px) {
+    #create-form-auto input{
+        width: 100% !important;
+    }
+
+    #create-form-auto .p-password-input{
+        width: 100% !important;
+    }
+
+    #create-form-auto .p-inputwrapper{
+        width: 100% !important;
+    }
+
+    #create-form-auto .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+}
+
+/* #create-form-auto .dialog-container .action-button .btn-action{
+    width: ;
+} */
+
+#create-form-auto .example-list {
+  width: 100%;
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#create-form-auto .example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+#create-form-auto .cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+#create-form-auto .cdk-drag-placeholder {
+  opacity: 0;
+}
+
+#create-form-auto .cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+#create-form-auto .example-box:last-child {
+  border: none;
+}
+
+#create-form-auto .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+    #create-form-auto .dialog-add-property {
+        width: 50vw;
+        height: 60vh;
+    }
+
+    #create-form-auto .dialog-add-attribute {
+        width: 50vw;
+        height: 60vh;
+    }
+}
+
+@media (max-width: 767px) {
+    #create-form-auto .dialog-add-property{
+        width: 80vw;
+        height: 50vh;
+    }
+
+    #create-form-auto .dialog-add-attribute{
+        width: 80vw;
+        height: 50vh;
+    }
+}
+
+
+#create-form-auto .content-upload-file{
+    color: #919eab;
+}
+
+#create-form-auto .avatar-default{
+    width: 126px;
+    height: 126px;
+    background-color: #919eab14;
+    border-radius: 50%;
+    
+}
+
+#create-form-auto  .cicler-item{
+    border-radius: 50%;
+}
+
+#create-form-auto .btn-action-creat-service{
+    padding-top: 12px;
+    padding-bottom: 12px;
+}

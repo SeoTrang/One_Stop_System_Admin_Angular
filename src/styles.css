@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+/* style.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '~quill/dist/quill.bubble.css';
+
+@import '~quill/dist/quill.snow.css';
+
 * {
 	box-sizing: border-box;
 }
@@ -171,6 +180,10 @@
 	--notification-list-avatar-size: 36px;
 	--notification-list-author-size: 170px;
 	--notification-list-date-size: 100px;
+}
+
+html{
+	font-size: 16px !important;
 }
 
 body {

@@ -1,0 +1,112 @@
+#service-page-admin .filter > div > p-multiselect > .p-multiselect{
+    width: 100%;
+}
+.button-add{
+    border: 1px solid;
+}
+.button-add:hover{
+    background-color: white;
+    color: black !important;
+    transition: 0.5s;
+}
+
+#service-page-admin .service-action .btn-action{
+    cursor: pointer;
+    transition: 0.5s;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#service-page-admin .service-action .btn-action i{
+    font-size: 17px;
+    padding: 5px 8px;
+    
+}
+
+#service-page-admin .service-action .btn-view{
+    background-color: #ffffff;
+    color: #18af7a;
+
+}
+
+#service-page-admin .service-action .btn-view:hover{
+    background-color: #18af7a;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+
+/* #service-page-admin .service-action .btn-edit{
+    background-color: #ffffff;
+    color: #fabb3a;
+
+}
+
+#service-page-admin .service-action .btn-delete:hover{
+    background-color: #e94560;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+#service-page-admin .service-action .btn-delete{
+    background-color: #ffffff;
+    color: #e94560;
+
+}
+
+#service-page-admin .service-action .btn-edit:hover{
+    background-color: #fabb3a;
+    color: #ffffff;
+    transition: 0.3s;
+} */
+
+
+
+#service-page-admin .service-action .btn-more{
+    background-color: #ffffff;
+    color: #9ca3af;
+
+}
+
+#service-page-admin .service-action .btn-more:hover{
+    background-color: #9ca3af;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+#service-page-admin .menu-view a:hover{
+    background-color: #22c55e29 ;
+    
+}
+
+#service-page-admin .menu-view a:hover span{
+    color: #18af7a;
+}
+
+#service-page-admin .menu-delete a:hover{
+    background-color: rgb(255, 225, 230);
+    color: #e94560;
+}
+
+#service-page-admin .menu-delete a:hover span{
+    color: #e94560;
+}
+
+#service-page-admin .menu-edit a:hover{
+    background-color: rgb(255 171 0 / 20%);
+    color: #7a4100;
+}
+
+#service-page-admin .menu-edit a:hover span{
+    color: #7a4100;
+}
+
+
+
+
+
+

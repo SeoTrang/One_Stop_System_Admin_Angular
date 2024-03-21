@@ -1,0 +1,124 @@
+<div id="rbac" class="rbac">
+    <div class="title flex justify-between font-medium items-center ">
+        <div class="title-left flex text-xl">
+            <div class="icon" >
+                <i class="fa-solid fa-user-gear"></i>
+            </div>
+            <div class="text-value ml-1">
+                Phân quyền
+            </div>
+        </div>
+
+        <!-- <div class="title-right">
+            <a routerLink="/manager/admin/create-officer" class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-plus"></i>
+                <span>
+                    Thêm quyền mới
+                </span>
+            </a>
+        </div> -->
+    </div>
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Phân quyền</span>
+        </div>
+    </div>
+
+    <div class="content w-full mt-2">
+        <div class="container-content mt-3 w-full md:flex">
+            <div class="box-left  w-full md:w-6/12 mb-2 md:flex md:justify-start">
+                <div class="content-box content-box-left w-98 bg-white rounded-md pl-3 pr-3 pt-3 pb-3 flex items-center justify-center">
+                    <div class="content">
+                        <div class="avatar flex items-center justify-center">
+                            <!-- <input class="hidden" id="avatar" type="file" accept="*.jpeg, *.jpg, *.png," (change)="onFileSelectedAvatar($event)"> -->
+                            <div class="cursor-pointer">
+                                <div class="rounded-full cicler-item border-dotted border-2 border-gray-300 p-1 flex items-center justify-center">
+                                    
+                                    <img class="rounded-full" src="https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_25.jpg" alt="">
+
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="shorf-info flex flex-col items-center justify-center mt-2">
+                            <div class="text-lg">
+                                Đào Thị Thu
+                            </div>
+                            <div class="text-xs blur-word">
+                                Phòng tài chính
+                            </div>
+
+                            <div class="text-base blur-word">
+                                dtthu@ictu.edu.vn
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box-right w-full md:w-6/12 mb-2 md:flex md:justify-start">
+                <div class="content-box content-box-left w-98 bg-white rounded-md pl-3 pr-3 pt-3 pb-3">
+                    <div class="title font-medium">
+                        Quyền truy cập
+                    </div>
+                    <div class="content mt-2">
+                        <!-- <section class="example-section">
+                            <span class="example-list-section">
+                              <mat-checkbox class="example-margin"
+                                            [checked]="allComplete"
+                                            [color]="task.color"
+                                            [indeterminate]="someComplete()"
+                                            (change)="setAll($event.checked)">
+                                {{task.name}}
+                              </mat-checkbox>
+                            </span>
+                            <span class="example-list-section">
+                              <ul class="ml-3">
+                                <li *ngFor="let subtask of task.subtasks">
+                                  <mat-checkbox [(ngModel)]="subtask.completed"
+                                                [color]="subtask.color"
+                                                (ngModelChange)="updateAllComplete()">
+                                    {{subtask.name}}
+                                  </mat-checkbox>
+                                </li>
+                              </ul>
+                            </span>
+                          </section> -->
+
+                          <section *ngFor="let role of listRoles" class="example-section">
+                            <span class="example-list-section">
+                              <mat-checkbox class="example-margin"
+                                            [checked]="role.checked"
+                                            color="primary"
+                                            (change)="setAll($event.checked,role.id)">
+                                {{role.label}}
+                              </mat-checkbox>
+                            </span>
+                            <span class="example-list-section">
+                              <ul class="ml-3">
+                                <li *ngFor="let subRole of role.subRBAC">
+                                  <mat-checkbox [(ngModel)]="subRole.checked"
+                                                color="primary"
+                                                (ngModelChange)="someComplete(subRole.parent_id)">
+                                    {{subRole.label}}
+                                  </mat-checkbox>
+                                </li>
+                              </ul>
+                            </span>
+                          </section>
+
+                         
+                    </div>
+
+                    <div class="btn-submit">
+                        <button (click)="btnSave()">Lưu lại</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

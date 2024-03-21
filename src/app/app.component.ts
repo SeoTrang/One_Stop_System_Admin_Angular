@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { AutoUnsubscribeOnDestroy } from '@core/utils/decorator';
 import { APP_CONFIGS } from '@env';
+import { LoadingService } from '@core/services/loading.service';
 
 @Component( {
 	selector    : 'app-root' ,
@@ -39,8 +40,11 @@ export class AppComponent implements OnInit , AfterViewInit {
 		private http : HttpClient ,
 		private activatedRoute : ActivatedRoute ,
 		private router : Router ,
-		private primengConfig : PrimeNGConfig
+		private primengConfig : PrimeNGConfig,
+		public loadingService: LoadingService
 	) {
+		console.log("hello app component");
+		
 		const observerOnLoading = this.notification.onAppLoading.pipe( debounceTime( 50 ) , distinctUntilChanged() ).subscribe( isLoading => this.isLoading = isLoading );
 		this.subscriptions.add( observerOnLoading );
 

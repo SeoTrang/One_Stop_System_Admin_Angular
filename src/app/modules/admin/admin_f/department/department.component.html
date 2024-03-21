@@ -1,0 +1,149 @@
+
+
+<div id="officer-page-admin" class="department-page box-container w-full pl-2 pr-2">
+    <div class="title flex justify-between font-medium items-center ">
+        <div class="title-left flex text-xl">
+            <div class="icon">
+                <i class="pi pi-fw pi-users" style="font-size: 1em; font-weight: 500;" ></i>
+            </div>
+            <div class="text-value ml-1">
+                Phòng ban
+            </div>
+        </div>
+        <!-- <div (click)="showDialog()" icon="pi pi-external-link" label="Show" class="title-left flex text-xl">
+            <div class="icon">
+              <i class="pi pi-fw pi-cog" style="font-size: 1em; font-weight: 500"></i>
+            </div>
+            <div class="text-value ml-1">Thêm dịch vụ</div>
+          </div> -->
+        <div (click)="showDialog()" class="title-right">
+            <div  class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-plus"></i>
+                <span>
+                    Thêm mới
+                </span>
+            </div>
+        </div>
+        
+    </div>
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Phòng ban</span>
+        </div>
+    </div>
+
+    <div class="content w-full mt-2 ">
+        <div class="">
+            <div class="w-full chart-left  rounded-md mt-4 ">
+                <div class="content-box bg-white pt-3 pb-4 pl-3 pr-3 w-98">
+                    <app-bar-chart-basic></app-bar-chart-basic>
+                </div>
+    
+            </div>
+            <div class="w-full content-right bg-white rounded-md mt-4 pt-4 pb-4 pl-3 pr-3">
+                <div class="content-box bg-white pt-3 pb-4 pl-3 pr-3 w-98">
+                    <p-table 
+                    [value]="departments"
+                    [scrollable]="true"  
+                    [responsive]="true"
+                    [tableStyle]="{ 'min-width': '50rem', 'width':'100%' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="max-width: 55px;">STT</th>
+                                <th style="min-width: 330px;">Tên</th>
+                                <th>Địa chỉ</th>
+                                <th>Cán bộ</th>
+                                <th>Dịch vụ</th>
+                                <th>Thủ tục</th>
+                                <th style="max-width: 70px;"></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-department let-i="rowIndex">
+                            <tr (click)="updateDepartmentSelected(department)">
+                                <td style="max-width: 55px;">{{ i+1 }}</td>
+                                <td style="min-width: 330px;">{{ department.name }}</td>
+                                <td>{{ department.address }}</td>
+                                <td>{{ department.officers }}</td>
+                                <td>{{ department.services }}</td>
+                                <td>{{ department.documents }}</td>
+                                <td class="menu" style="max-width: 70px;">
+                                    <div class="cursor-pointer btn-action btn-more flex items-center justify-center" (click)="menu.toggle($event)">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="mt-4 w-full">
+            <div class="content-box">
+                <span class="p-float-label ">
+                    <input class="w-full" pInputText id="username" />
+                    <label for="username">Phòng ban mới</label>
+                </span>
+            </div>
+
+        </div> -->
+    </div>
+
+    <p-menu #menu [model]="menuItems" [popup]="true" class="menu"></p-menu>
+    <p-confirmDialog></p-confirmDialog>
+
+    <p-dialog header="Thêm phòng ban mới" [(visible)]="visible" [style]="{width: '35rem'}">
+        <div class="create-department">
+            <form action="#" [formGroup] = "departmentForm" class="content">
+                <div class="input">
+                    <div class="w-full">
+                        <label class="w-full" for="">Tên phòng ban (<span class="text-red-500">*</span>)</label>
+                    </div>
+                    <div class="w-full">
+                        <input class="w-full" formControlName="name"  type="text" pInputText />
+                    </div>
+                    <div class="w-full mt-3">
+                        <label class="w-full" for="">Địa chỉ phòng(<span class="text-red-500">*</span>)</label>
+                    </div>
+                    <div class="w-full">
+                        <input class="w-full" formControlName="address"  type="text" pInputText/>
+                    </div>
+                </div>
+                <div class="button-action mt-3">
+                    <button (click)="btnAddNewDepartment()" class="w-full bg-blue-500 text-white p-2">
+                        Thêm
+                    </button>
+                </div>
+            </form>
+        </div>
+    </p-dialog>
+
+    <p-dialog header="Sửa phòng ban" [(visible)]="editDepartmentVisible" [style]="{width: '35rem'}">
+        <div class="create-department">
+            <form action="#" [formGroup] = "editDepartmentForm" class="content">
+                <div class="input">
+                    <div class="w-full">
+                        <label class="w-full" for="">Tên phòng ban (<span class="text-red-500">*</span>)</label>
+                    </div>
+                    <div class="w-full">
+                        <input class="w-full" formControlName="name"  type="text" pInputText autocomplete="name"/>
+                    </div>
+                    <div class="w-full mt-3">
+                        <label class="w-full" for="">Địa chỉ phòng(<span class="text-red-500">*</span>)</label>
+                    </div>
+                    <div class="w-full">
+                        <input class="w-full" formControlName="address"  type="text" pInputText/>
+                    </div>
+                </div>
+                <div class="button-action mt-3">
+                    <button (click)="btnUpdateOnclick()" class="w-full bg-blue-500 text-white p-2">
+                        Lưu lại
+                    </button>
+                </div>
+            </form>
+        </div>
+    </p-dialog>
+
+</div>

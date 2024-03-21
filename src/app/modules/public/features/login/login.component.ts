@@ -38,12 +38,13 @@ declare var google : any;
 
 @AutoUnsubscribeOnDestroy()
 export class LoginComponent implements OnInit {
+	defaultIndetifier = "DTO4801030040"
 
 	// isRealEmail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 	isRealEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 	loginForm : FormGroup = this.formBuilder.group( {
-		username : [ '' , Validators.required ] ,
+		identifier : [ 'DTO4801030040' , Validators.required] ,
 		password : [ '' , Validators.required ]
 	} );
 
@@ -134,7 +135,8 @@ export class LoginComponent implements OnInit {
 			const redirect  = this.params && this.params.hasOwnProperty( 'redirect' ) ? this.params[ 'redirect' ] : APP_CONFIGS.defaultRedirect;
 			const pageTitle = APP_CONFIGS.pageTitle || 'admin area';
 			this.title.setTitle( pageTitle );
-			await this.router.navigate( [ redirect ] , { queryParams : this.params } );
+			// await this.router.navigate( [ redirect ] , { queryParams : this.params } );
+			await this.router.navigate( ['/manager/dashboard'] );
 			this.isLoading = false;
 		} else {
 			this.title.setTitle( 'Login Account' );
@@ -145,13 +147,17 @@ export class LoginComponent implements OnInit {
 	get f() { return this.loginForm.controls; }
 
 	async btnSignIn( button : LoginButton ) {
+		// console.log(this.loginForm.value);
+		// console.log(this.loginForm.value.username);
+		// console.log(this.loginForm.value.password);
+		
 		if ( this.isLoading || button.isLoading ) {
 			return;
 		}
 		this.currentLoginButton = button;
 		if ( button.name === 'signIn' && this.loginForm.valid ) {
 			const signInfo = {
-				username : this.loginForm.controls[ 'username' ].value ,
+				identifier : this.loginForm.controls[ 'identifier' ].value ,
 				password : this.loginForm.controls[ 'password' ].value
 			};
 			this.loginEvent$.next( signInfo );

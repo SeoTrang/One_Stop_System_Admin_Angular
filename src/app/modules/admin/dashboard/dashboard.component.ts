@@ -63,23 +63,37 @@ export class DashboardComponent implements OnInit {
 
 	bodyNoScroll = '<style>body {overflow: hidden !important; padding-right: 16.5px;}</style>';
 
+	userRoles : any;
+
 	constructor(
 		private helperService : HelperService ,
 		private router : Router ,
 		private notificationService : NotificationService ,
 		private auth : AuthService
 	) {
+		const loadMenu = this.auth.roles$.subscribe({
+			next: (roles)=> {
+				console.log(roles);
+				this.userRoles = roles;
+				this.initNavControll()
+			}
+		})
 		const observerRouterEvents = router.events.pipe( filter( e => e instanceof NavigationEnd ) ).subscribe( ( e : NavigationEnd ) => {
 			e.toString();
+			console.log(e);
+			console.log( e.url.substring( 7 ).split( '?' )[ 0 ]);
+			
+			
 			const useCase   = this.auth.getUseCase( e.url.substring( 7 ).split( '?' )[ 0 ] );
 			this.menuActive = useCase ? { label : useCase.title , icon : useCase.icon } : { label : 'Bảng điều khiển' , icon : 'fi-rr-dashboard' };
 		} );
 		this.subscriptions.add( observerRouterEvents );
+		
 
 		const observerChangeLanguage = this.auth.appLanguageSettings().pipe( filter( value => value !== undefined && value !== null ) ).subscribe(
 			( settings ) => {
 				const lang        = APP_CONFIGS.multiLanguage ? settings : null;
-				this.verticalMenu = this.useCase2ToMenuItem( this.auth.useCases , lang );
+				// this.verticalMenu = this.useCase2ToMenuItem( this.auth.useCases , lang );
 			}
 		);
 		this.subscriptions.add( observerChangeLanguage );
@@ -102,6 +116,146 @@ export class DashboardComponent implements OnInit {
 	}
 
 	ngOnInit() : void {
+		this.initNavControll()
+		
+    
+	}
+
+	initNavControll(){
+		const isAdmin = this.auth.isAdmin();
+		console.log("isAdmin: "+isAdmin);
+
+		// console.log(this.auth.getUserRoles());
+		let roles = this.userRoles || this.auth.getUserRoles();
+		console.log(roles);
+		roles = roles.filter(role => role.nav_menu == true);
+		
+		let transformedRoles = roles.map(role => {
+			const { label, routerLink, icon, parent_id } = role;
+			if (parent_id === null) {
+				return {
+					label,
+					icon,
+					routerLink: routerLink ? [routerLink] : null,
+					items: roles.filter(child => child.parent_id === role.id).map(child => ({
+						label: child.label,
+						routerLink: child.routerLink ? [child.routerLink] : null
+					}))
+				};
+			}
+			return null;
+		}).filter(role => role !== null);
+		
+		// console.log(transformedRoles);
+		transformedRoles = transformedRoles.map((value)=> {
+			if(value.items.length > 0){
+				return value
+			}else{
+				const { label, routerLink, icon, items } = value;
+				return {label,routerLink,icon}
+			}
+
+		})
+
+		console.log(transformedRoles);
+		
+
+		this.verticalMenu = transformedRoles || [];
+		
+		// if(isAdmin) {
+			// this.verticalMenu = [
+			// 	{
+			// 		label: "Trang chủ",
+			// 		icon: 'pi pi-home',
+			// 		routerLink: ['/manager/dashboard']
+			// 	},
+			// 	{
+			// 		label: "Cán bộ giảng viên",
+			// 		icon:'pi pi-users',
+			// 		items:[
+			// 			{
+			// 				label: 'Tất cả',
+			// 				routerLink: ['/manager/admin/officer']
+			// 			},
+			// 			{
+			// 				label: 'Thêm cán bộ giảng viên',
+			// 				routerLink: ['/manager/admin/create-officer']
+			// 			}
+			// 		]
+			// 	},
+			// 	{
+			// 		label: "Sinh viên",
+			// 		icon:'pi pi-fw pi-user',
+			// 		items:[
+			// 			{
+			// 				label: 'Tất cả sinh viên',
+			// 				routerLink: ['/manager/admin/student']
+			// 			},
+			// 			{
+			// 				label: 'Thêm sinh viên',
+			// 				routerLink: ['/manager/admin/create-student']
+			// 			}
+			// 		]
+			// 	},
+			// 	{
+			// 		label: 'Dịch vụ',
+			// 		icon: 'pi pi-fw pi-cog ',
+			// 		items: [
+			// 			{
+			// 				label: 'Tất cả dịch vụ',
+			// 				routerLink: ['/manager/admin/service'],
+			// 				// icon: 'pi pi-fw pi-user-plus'
+			// 			},
+			// 			{
+			// 				label: 'Top dịch vụ',
+			// 			},
+			// 			{
+			// 				label: 'Thêm dịch vụ',
+			// 				routerLink: ['/manager/admin/create-service'],
+			// 			}
+			// 		]
+			// 	},
+			// 	{
+			// 		label: 'Phòng ban',
+			// 		icon: 'pi pi-fw pi-briefcase',
+			// 		routerLink: ['/manager/admin/department']
+					
+			// 	},
+
+			// 	{
+			// 		label: 'Biểu mẫu tự động',
+			// 		icon: 'pi pi-file-pdf',
+			// 		items: [
+			// 			{
+			// 				label: 'Tất cả',
+			// 				routerLink: ['/manager/admin/auto-form'],
+			// 				icon: ''
+			// 			},
+			// 			{
+			// 				label: 'Thêm biểu mẫu mới',
+			// 				routerLink: ['/manager/admin/create-auto-form'],
+			// 				icon: ''
+			// 			}
+			// 		]
+			// 	},
+			// 	{
+			// 		label: 'Thủ tục',
+			// 		icon: 'pi pi-fw pi-file',
+			// 		routerLink: ['/manager/admin/document']
+					
+			// 	},
+			// 	{
+			// 		label: 'Hỏi đáp',
+			// 		icon: 'pi pi-fw pi-comments',
+			// 		routerLink: ['/manager/admin/post']
+			// 	},
+			// 	{
+			// 		label: 'Câu hỏi',
+			// 		icon: 'pi pi-fw pi-question'
+			// 	}
+			// ];
+		
+			
 	}
 
 	useCase2ToMenuItem( data : Ucase[] , lang : LangChangeEvent = null ) : MenuItem[] {
@@ -155,5 +309,7 @@ export class DashboardComponent implements OnInit {
 	closePanel() {
 		this.notificationService.closeSideNavigationMenu();
 	}
+
+	
 
 }

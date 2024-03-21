@@ -1,3 +1,23 @@
+
+.badge-red{
+    background-color: red !important;
+    color: white !important;
+}
+
+.p-panelmenu .p-menuitem-badge{
+	background-color: red !important;
+    color: white !important;
+}
+
+#undefined_content > p-panelmenusub > ul > li > a > span.p-menuitem-badge.ng-tns-c135-9.badge-red.ng-star-inserted{
+	background-color: red;
+}
+
+/* .ovic-student-layout__vertical-nav__menu .p-menuitem-badge {
+    background-color: red;
+    color: white;
+} */
+
 .ovic-student-layout__app-name {
 	display: flex;
 	align-items: center;
@@ -21,7 +41,7 @@
 .ovic-student-layout__header__left {
 	display: flex;
 	width: var(--vertical-nav-width);
-	min-width: var(--vertical-nav-width);
+	/* min-width: var(--vertical-nav-width); */
 	max-width: var(--vertical-nav-width);
 }
 

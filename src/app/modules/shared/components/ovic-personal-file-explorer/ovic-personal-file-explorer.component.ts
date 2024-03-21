@@ -581,48 +581,49 @@ export class OvicPersonalFileExplorerComponent implements OnInit , OnDestroy {
 	 * onFileInput functions
 	 * *****************************************************/
 	async onFileInput( $event , fileChooser : HTMLInputElement ) {
-		this.errorMaxFileUploading = false;
-		this.uploadingFiles        = [].concat( this.uploadingFiles , this.validateFiles( $event ) );
-		fileChooser.value          = '';
-		const validateFiles        = this.uploadingFiles.filter( f => f.validate );
-		if ( validateFiles.length > this.maxUploadingFiles ) {
-			this.errorMaxFileUploading = true;
-			setTimeout( () => this.uploadingFiles = [] , 5000 );
-		} else {
-			validateFiles.forEach( ( file , index ) => {
-				if ( this.server === 'serverFile' ) {
-					setTimeout( () => {
-						this.fileService.uploadFileWidthProgress( file.file , this.auth.user.donvi_id , this.auth.user.id ).subscribe( {
-							next  : () => {
-								file.uploaded = true;
-								file.message  = 'Upload thành công';
-								setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
-								this.reloadData( 1000 );
-							} ,
-							error : () => {
-								file.validate = false;
-								file.message  = 'Upload thất bại';
-							}
-						} );
-					} , 50 * index );
-				} else {
-					setTimeout( () => {
-						this.fileService.googleDriveUploadFileToParents( file.file , this.rootFolder ).subscribe( {
-							next  : () => {
-								file.uploaded = true;
-								file.message  = 'Upload thành công';
-								setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
-								this.reloadData( 1000 );
-							} ,
-							error : () => {
-								file.validate = false;
-								file.message  = 'Upload thất bại';
-							}
-						} );
-					} , 50 * index );
-				}
-			} );
-		}
+		// =====> commment
+		// this.errorMaxFileUploading = false;
+		// this.uploadingFiles        = [].concat( this.uploadingFiles , this.validateFiles( $event ) );
+		// fileChooser.value          = '';
+		// const validateFiles        = this.uploadingFiles.filter( f => f.validate );
+		// if ( validateFiles.length > this.maxUploadingFiles ) {
+		// 	this.errorMaxFileUploading = true;
+		// 	setTimeout( () => this.uploadingFiles = [] , 5000 );
+		// } else {
+		// 	validateFiles.forEach( ( file , index ) => {
+		// 		if ( this.server === 'serverFile' ) {
+		// 			setTimeout( () => {
+		// 				this.fileService.uploadFileWidthProgress( file.file , this.auth.user.donvi_id , this.auth.user.id ).subscribe( {
+		// 					next  : () => {
+		// 						file.uploaded = true;
+		// 						file.message  = 'Upload thành công';
+		// 						setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
+		// 						this.reloadData( 1000 );
+		// 					} ,
+		// 					error : () => {
+		// 						file.validate = false;
+		// 						file.message  = 'Upload thất bại';
+		// 					}
+		// 				} );
+		// 			} , 50 * index );
+		// 		} else {
+		// 			setTimeout( () => {
+		// 				this.fileService.googleDriveUploadFileToParents( file.file , this.rootFolder ).subscribe( {
+		// 					next  : () => {
+		// 						file.uploaded = true;
+		// 						file.message  = 'Upload thành công';
+		// 						setTimeout( () => this.removeFileFromUploadingList( null , file.id ) , 3000 + ( index * 100 ) );
+		// 						this.reloadData( 1000 );
+		// 					} ,
+		// 					error : () => {
+		// 						file.validate = false;
+		// 						file.message  = 'Upload thất bại';
+		// 					}
+		// 				} );
+		// 			} , 50 * index );
+		// 		}
+		// 	} );
+		// }
 	}
 
 	/**************************************************
@@ -908,7 +909,7 @@ export class OvicPersonalFileExplorerComponent implements OnInit , OnDestroy {
 			return this.notificationService.toastError( 'Thiếu thư mục drive gốc' );
 		}
 		this.isCreatingStore = true;
-		const name           = this.auth.user.username;
+		const name           = this.auth.user.name;
 		const parents        = this.driveFolder;
 		this.fileService.createPersonalFolder( { name , parents } ).pipe(
 			mergeMap( folderInfo => {

@@ -6,7 +6,7 @@ export const environment = {
 	url         : 'https://api-dev.ictu.vn:10091/' ,
 	datetime    : 'https://api-dev.ictu.vn:10091/datetime' ,
 	googleDrive : 'https://api-dev.ictu.vn:10091/elearning/api/driver/' ,
-	api         : 'https://api-dev.ictu.vn:10091/elearning/api/' ,
+	api         : 'http://localhost:3000' ,
 	media       : 'https://api-dev.ictu.vn:10091/elearning/api/uploads/' ,
 	fileDir     : 'https://media.ictu.edu.vn:9081/folder/elearning/' ,
 	download    : 'https://media.ictu.edu.vn:9081/media/elearning/' ,
@@ -97,6 +97,8 @@ export const HIDDEN_MENUS = new Set( [ 'message/notification-details' ] ); // id
 // export const CSRF_TOKEN_EXPIRED_KEY = 'MsWAA8EX';
 
 export const USER_KEY      = 'ZpeJk7zV';
+export const USER_ROLE_KEY = 'ZpeJk7zV1';
+export const USER_ROLE_KEY_INIT = 'ZpeJk7zV2';
 export const EXPIRED_KEY   = 'ZY4dcVQ8';
 export const UCASE_KEY     = 'S2e6M9AT';
 export const ROLES_KEY     = 'xKwPLuJF';

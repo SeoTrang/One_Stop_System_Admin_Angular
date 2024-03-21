@@ -18,7 +18,7 @@ export interface Permission {
 }
 
 export interface UserSignIn {
-	username : string,
+	identifier : string,
 	password : string,
 }
 

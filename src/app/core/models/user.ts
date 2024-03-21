@@ -1,28 +1,17 @@
 export interface User {
 	id : number;
-	username : string;
-	display_name : string;
-	phone : string;
+	name : string;
+	identifier : string;
 	email : string;
+	phone: string;
+	display_name: string;
 	password? : string;
-	avatar : string;
-	donvi_id : number;
-	realms : string[];
-	role_ids : string[];
+	avatar? : string;
 	status : number;
 	created_at : string;
 	updated_at : string;
-	is_admin? : number;
-	is_deleted? : number;
-	created_by? : number;
-	updated_by? : number;
+	isAdmin? : number;
 
-	// permission : {
-	// 	api : object, //{ "roles": [1,1,1,1],"ucases": [1,1,1,1], "usermeta": [1,1,1,1] }
-	// 	ucases : object, // { "57": [1,1,1,1],"62": [1,1,1,1], "88": [1,1,1,1] }
-	// 	roles : number[]
-	// };
-	// meta : UserMeta[];
 }
 
 export interface SimpleUser {

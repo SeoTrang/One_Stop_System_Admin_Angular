@@ -1,7 +1,13 @@
+/* .badge-red{
+	background-color: #e94560 !important;
+} */
+
+
+
 .ovic-student-layout {
 	margin: 0;
 	font-family: "Roboto", sans-serif;
-	font-size: 0.875rem;
+	font-size: 1rem;
 	line-height: 1.42857143;
 	color: #333333;
 	background: #ffffff;
@@ -1262,6 +1268,14 @@ pdf-viewer[ng-reflect-show-all="false"] .pdfViewer {
 	padding: var(--panel-left-menu-padding);
 	background: var(--panel-left-menu-bg);
 }
+
+.ovic-student-layout__vertical-nav .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link,
+.ovic-student-layout__vertical-nav .p-panelmenu .p-panelmenu-header > a {
+	/* background-color: rebeccapurple; */
+}
+
+
+
 
 .ovic-student-layout__vertical-nav .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled) > a:hover,
 .ovic-student-layout__vertical-nav .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link:hover,

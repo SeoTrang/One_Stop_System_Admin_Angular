@@ -1,0 +1,83 @@
+#create-user .content-box{
+    width: 98%;
+}
+#create-user .content{
+    color: #919eab;
+}
+
+#create-user .avatar-default{
+    width: 126px;
+    height: 126px;
+    background-color: #919eab14;
+    border-radius: 50%;
+    
+}
+
+#create-user  .cicler-item{
+    border-radius: 50%;
+}
+
+#create-user .avatar-value{
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+}
+#create-user .avatar-value img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#create-user .p-treeselect-label{
+    color: #495057;
+}
+
+#create-user .p-placeholder{
+    color: #495057 !important;
+    opacity: 1;
+}
+
+
+@media (min-width: 640px) {
+    #create-user .box-right input{
+        width: 95% !important;
+    }
+    /* #create-user .box-right .p-element .p-inputwrapper{
+        width: 100% !important;
+    } */
+
+    #create-user .box-right .p-element .p-inputwrapper{
+        width: 95% !important;
+    }
+
+    #create-user .box-right p-password input{
+        width: 100% !important;
+    }
+
+    /* #create-user .box-right .p-password-input{
+        width: 95% !important;
+    } */
+    #create-user .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+    
+}
+@media (max-width: 639px) {
+    #create-user .box-right input{
+        width: 100% !important;
+    }
+
+    #create-user .box-right .p-password-input{
+        width: 100% !important;
+    }
+
+    #create-user .box-right .p-inputwrapper{
+        width: 100% !important;
+    }
+
+    #create-user .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+}
+

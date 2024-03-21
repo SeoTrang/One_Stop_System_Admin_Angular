@@ -56,7 +56,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 	form : FormGroup;
 
 	errorList = {
-		userNameAlreadyExist : false
+		nameAlreadyExist : false
 	};
 
 	emailControl = {
@@ -102,7 +102,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 	) {
 		this.form                   = this.fb.group( {
 			display_name : [ this.auth.user.display_name , [ Validators.required , Validators.minLength( 3 ) ] ] ,
-			username     : [ { value : this.auth.user.username , disabled : true } ] ,
+			name     : [ { value : this.auth.user.name , disabled : true } ] ,
 			//phone      : [ '' , [ Validators.required , Validators.pattern( /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/ ) ] ] ,
 			phone    : [ this.auth.user.phone , [ Validators.required , Validators.minLength( 8 ) , Validators.maxLength( 20 ) ] ] ,
 			email    : [ this.auth.user.email , [ Validators.required , Validators.pattern( /^[a-zA-Z0-9_\.]+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/ ) ] ] ,
@@ -186,7 +186,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 			if ( confirm.name === 'yes' ) {
 				try {
 					const info = {
-						name    : this.auth.user.username ,
+						name    : this.auth.user.name ,
 						parents : APP_CONFIGS.teacherCloudStorage
 					};
 					this.notificationService.isProcessing( true );
@@ -246,7 +246,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 				const avatar  = await this.mediaService.callAvatarMaker( { aspectRatio : 1 , resizeToWidth : 120 , dirRectImage : { enable : true , dataUrl : dataUrl } } );
 				if ( avatar && !avatar.error && avatar.data ) {
 					const none     = new Date().valueOf();
-					const fileName = this.user.username + none + '.png';
+					const fileName = this.user.name + none + '.png';
 					const file     = this.fileService.base64ToFile( avatar.data.base64 , fileName );
 					this.notificationService.isProcessing( true );
 					const uploadAvatar$ = this.fileService.googleDriveUploadFileToParents( file , this.auth.cloudStore );
@@ -268,7 +268,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 
 	updateAvatars( fileId : string ) {
 		const data = {
-			username : this.auth.user.username ,
+			name : this.auth.user.name ,
 			avatar   : environment.googleDrive + fileId + '/download'
 		};
 		const id   = this.auth.user.id;
@@ -339,7 +339,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 	handleSubmitEvent() {
 		if ( this.form.valid ) {
 			this.notificationService.isProcessing( true );
-			const data = { ... this.form.value , username : this.auth.user.username };
+			const data = { ... this.form.value , name : this.auth.user.name };
 			this.userService.updateUserInfo( this.user.id , data ).pipe( switchMap( () => this.userService.getUser( this.auth.user.id ) ) ).subscribe( {
 				next  : ( user ) => {
 					this.auth.updateUser( user );
@@ -383,7 +383,7 @@ export class ThongTinTaiKhoanComponent implements OnInit {
 		const options = { onlySelf : true , emitEvent : false };
 		this.form.reset( {
 			display_name : this.auth.user.display_name ,
-			username     : this.auth.user.username ,
+			name     : this.auth.user.name ,
 			phone        : this.auth.user.phone ,
 			email        : this.auth.user.email ,
 			password     : '*********'

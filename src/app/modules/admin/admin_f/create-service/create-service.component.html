@@ -1,0 +1,415 @@
+<div id="create-service" class="pb-5">
+  <div class="title flex justify-between font-medium items-center">
+    <div class="title-left flex text-xl">
+      <div class="icon">
+        <i class="pi pi-fw pi-cog" style="font-size: 1em; font-weight: 500"></i>
+      </div>
+      <div class="text-value ml-1">Thêm dịch vụ</div>
+    </div>
+
+    <div class="title-right">
+      <a
+        routerLink="/manager/admin/service"
+        class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer"
+      >
+        <i class="pi pi-arrow-left"></i>
+        <span> Quay lại </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="router w-full text-sm mb-2 mt-2">
+    <div class="flex items-center">
+      <span class="route-item">Trang chủ</span>
+      <span class="dots ml-2 mr-2"></span>
+      <span class="route-item">Thêm sinh viên</span>
+    </div>
+  </div>
+
+  <div class="container-content-create-service w-full">
+    <div class="container-content mt-3 w-full">
+      <div class="content-service">
+        <div class="bg-white rounded-md mt-3 pt-3 pr-3 pl-3">
+          <div class="title-box pb-4 font-medium">Thông tin dịch vụ</div>
+          <div class="line-items-field sm:flex">
+            <div class="field-item mb-4 mt-2 sm:w-6/12">
+              <span class="p-float-label w-full">
+                <input pInputText id="identifier" />
+                <label for="identifier">Tên dịch vụ</label>
+              </span>
+            </div>
+            <div class="field-item mb-4 mt-2 sm:w-6/12">
+              <span class="p-float-label w-full">
+                <p-treeSelect
+                  [options]="dataDepartments"
+                  placeholder="Thuộc bộ phận"
+                ></p-treeSelect>
+              </span>
+            </div>
+          </div>
+
+          <div class="line-items-field sm:flex">
+            <div class="field-item mb-4 mt-2 sm:w-6/12">
+              <span class="p-float-label w-full">
+                <input pInputText id="identifier" />
+                <label for="identifier">Hình thức hỗ trợ</label>
+              </span>
+            </div>
+            <div class="field-item mb-4 mt-2 sm:w-6/12">
+              <span class="p-float-label w-full">
+                <input pInputText id="identifier" />
+                <label for="identifier">Thời gian xử lý</label>
+              </span>
+            </div>
+          </div>
+
+          <div class="line-items-field sm:flex">
+            <div class="field-item mb-4 mt-2 sm:w-6/12">
+              <span class="p-float-label w-full">
+                <input pInputText id="identifier" />
+                <label for="identifier">Mô tả</label>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-md mt-3 pt-3 pr-3 pl-3">
+          <div class="title-box pb-4 font-medium">Các bước thực hiện</div>
+
+          <!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let movie of movies" cdkDrag>
+                          {{ movie }}
+                          <button (click)="removeMovie(movie)">Xóa</button>
+                        </div>
+                      </div> -->
+
+          <!-- <button mat-raised-button color="primary">Primary</button> -->
+          <div class="content-steps">
+            <div class="steps">
+              <p-steps
+                [activeIndex]="0"
+                [model]="steps"
+                [readonly]="true"
+              ></p-steps>
+            </div>
+            <div class="action-step md:flex">
+              <div class="left mt-3 md:w-6/12">
+                <div class="w-98">
+                  <div
+                    *ngIf="movies.length > 0"
+                    cdkDropList
+                    class="example-list"
+                    (cdkDropListDropped)="drop($event)"
+                  >
+                    <div
+                      class="example-box"
+                      *ngFor="let movie of movies; index as i"
+                      cdkDrag
+                    >
+                      <!-- <span>{{i+1}}</span> -->
+                      {{ movie }}
+                      <button
+                        class="hover:text-red-500"
+                        (click)="removeMovie(movie)"
+                      >
+                        Xóa
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="movies.length == 0"
+                    class="example-list p-2 blur-word"
+                  >
+                    Vui lòng thêm các bước cần thiết để làm thủ tục
+                  </div>
+                </div>
+              </div>
+
+              <div class="right mt-3 md:w-6/12">
+                <div class="w-98">
+                  <div class="add-step">
+                    <span class="p-float-label w-full">
+                      <p-treeSelect
+                        [(ngModel)]="selectNewStep"
+                        [options]="dataDepartments"
+                        placeholder="Thuộc bộ phận"
+                        (ngModelChange)="onSelectNewStep($event)"
+                      ></p-treeSelect>
+                    </span>
+                  </div>
+                  <div class="btn-add-step mt-3 mb-3">
+                    <button
+                      (click)="onAddStepClick()"
+                      class="bg-black text-white p-2 rounded-sm w-full"
+                    >
+                      Thêm bước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-md mt-3 pt-3 pb-5 pr-3 pl-3">
+          <div class="container-add-description">
+            <div class="title-box pb-4 font-medium">Mô tả các bước thực hiện dịch vụ</div>
+            <!-- <quill-editor [(ngModel)]="contentDescription"></quill-editor> -->
+
+            <!-- <p-editor [(ngModel)]="contentDescription" [style]="{ height: '320px' }"></p-editor> -->
+            <quill-editor 
+            [styles]="{height: '250px'}"
+            [(ngModel)]="contentDescription"
+            placeholder="Enter Text"
+            [modules]="quillConfig"
+            (onSelectionChanged)="onSelectionChanged($event)"
+            (onContentChanged)="onContentChanged($event)">
+          </quill-editor>
+          </div>
+
+          <div [innerHTML]="contentDescription">
+            
+          </div>
+          <div>
+            {{contentDescription}}
+          </div>
+        </div>
+
+        <div class="bg-white rounded-md mt-3 pt-3 pb-3 pr-3 pl-3">
+          <div class="container-add-properties">
+            <div class="title-box pb-4 font-medium">Các thuộc tính</div>
+            <div class="content-add-properties">
+              <div class="content-field sm:flex sm:flex-wrap">
+                <div
+                  *ngFor="let attribute of listAttributes; index as i"
+                  class="sm:w-6/12"
+                >
+                  <div *ngIf="attribute.type == 'Input'">
+                    <div class="field-item mb-4 mt-2">
+                      <!-- <span class="p-float-label w-full">
+                        <input [disabled]="true" pInputTex  [id]="i"/>
+                        <label [for]="i">{{attribute.name}}</label>
+                      </span> -->
+                      <span class="p-float-label w-full">
+                        <input [disabled]="true" pInputText id="" />
+                        <label for="">{{ attribute.name }}</label>
+                      </span>
+                    </div>
+                  </div>
+                  <div *ngIf="attribute.type == 'Select'">
+                    <div class="field-item mb-4 mt-2">
+                      <p-treeSelect
+                        [options]="attribute.enums"
+                        [placeholder]="attribute.name"
+                      ></p-treeSelect>
+                    </div>
+                  </div>
+
+                  <div *ngIf="attribute.type == 'Checkbox'">
+                    <div class="">
+                      {{attribute.name}}
+                    </div>
+                    <div class="field-item mb-4 mt-2 flex flex-wrap">
+                      <div *ngFor="let enum of attribute.enums" class="mr-2">
+                        <mat-checkbox
+                          color="primary"
+
+                        >
+                          {{ enum.label }}
+                        </mat-checkbox>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="sm:w-6/12">
+                    <div class="field-item mb-4 mt-2">
+                      <span class="p-float-label w-full">
+                        <input [disabled]="true" pInputText id="identifier" />
+                        <label for="identifier">Hình thức hỗ trợ</label>
+                      </span>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+
+              <hr />
+              <div class="line-items-field sm:flex">
+                <!-- <div class="field-item mb-4 mt-2 sm:w-6/12">
+                    <span class="p-float-label w-full">
+                        <p-treeSelect
+                          [(ngModel)]="selectNewProperty"
+                          [options]="typeProperty"
+                          placeholder="Loại thuộc tính"
+                          (ngModelChange)="onSelectNewProperty($event)"
+                        ></p-treeSelect>
+                      </span>
+                </div> -->
+                <div class="field-item mb-4 flex mt-2 sm:w-6/12">
+                  <div
+                    (click)="onShowDialogAddAttribute()"
+                    class="bg-black text-white p-2 flex items-center justify-center rounded-sm cursor-pointer btn-add"
+                  >
+                    Thêm thuộc tính
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="bg-white rounded-md mt-3 pt-3 pb-5 pr-3 pl-3">
+          <div class="container-add-properties">
+            <div class="title-box pb-4 font-medium">File mẫu</div>
+            <div class="content-upload-file">
+              <div class="avatar flex items-center justify-center">
+                  <input class="hidden" id="avatar" type="file" (change)="onFileSelected($event)">
+                  <label for="avatar" class="cursor-pointer">
+                      <div class="cicler-item border-dotted border-2 border-gray-300 p-1 flex items-center justify-center">
+                          <div class="avatar-default flex items-center justify-center">
+                              <div class=" flex justify-center items-center flex-col">
+                                  <div>
+                                      <i class="pi pi-camera" style="font-size: 20px;"></i>
+                                  </div>
+                                  <div >Chọn file</div>
+                              </div>
+                          </div>
+                          
+                      </div>
+                      
+                  </label>
+              </div>
+              <div *ngIf="fileName" class="type-file flex justify-center mt-2">
+                <span class="text-sm text-blue-500" >
+                  {{fileName}}
+                </span>
+            </div>
+              <div class="type-file flex justify-center mt-2">
+                  <span class="text-sm">
+                      Các dạng file dưới 5 MB
+                  </span>
+              </div>
+          </div>
+          </div>
+        </div>
+
+
+        <!-- action button -->
+        <div class="action-create-service mt-3 sm:flex sm:justify-between sm:items-center">
+            <div class="box-left sm:w-6/12 flex justify-center items-center mb-3">
+              <button class="bg-gray-400 text-white btn-action-creat-service rounded-t-sm w-80">
+                Hủy
+              </button>
+            </div>
+            <div class="box-right sm:w-6/12 flex justify-center items-center mb-3">
+              <button class="bg-blue-500 text-white btn-action-creat-service rounded-t-sm w-80">
+                Lưu lại
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- [style]="{width: '50vw', height: '60vh'}" -->
+  <p-dialog
+    header="Thêm thuộc tính mới"
+    [(visible)]="displayDialogAddAttribute"
+  >
+    <div
+      class="dialog-container overflow-y-scroll w-full flex flex-col justify-between dialog-add-property"
+    >
+      <div class="content">
+        <!-- <div class="p-float-label w-full">
+                    <input pInputText id="propertyName" />
+                    <label for="propertyName">Tên thuộc tính</label>
+                </div> -->
+        <div class="field w-full">
+          <label for="propertyName" class="block common-word"
+            >Tên thuộc tính</label
+          >
+          <input
+            id="propertyName"
+            [(ngModel)]="newAttributeName"
+            type="username"
+            aria-describedby="username1-help"
+            pInputText
+          />
+          <!-- <small id="username1-help" class="block">Enter your username to reset your password.</small> -->
+        </div>
+        <div class="p-float-label w-full mt-3">
+          <p-treeSelect
+            [(ngModel)]="selectNewAttribute"
+            [options]="typeAttribute"
+            placeholder="Loại thuộc tính"
+            (ngModelChange)="onSelectNewProperty($event)"
+            class="overflow-y-scroll"
+          ></p-treeSelect>
+        </div>
+      </div>
+
+      <div class="action-button">
+        <div class="flex justify-end pb-3">
+          <div
+            class="btn-action cancle-btn text-base font-medium pt-1 pb-1 pl-3 pr-3 rounded-sm text-white bg-gray-400 cursor-pointer"
+          >
+            Hủy
+          </div>
+          <div
+            (click)="onAddAttributeClick()"
+            class="btn-action ok-btn ml-4 text-base font-medium pt-1 pb-1 pl-3 pr-3 rounded-sm text-white bg-blue-500 cursor-pointer"
+          >
+            Thêm
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+
+  <p-dialog
+    header="Thêm giá trị cho thuộc tính"
+    [(visible)]="displayDialogAddAttributeEnum"
+  >
+    <div
+      class="dialog-container overflow-y-scroll w-full flex flex-col justify-between dialog-add-attribute"
+    >
+      <div class="content">
+        <!-- <div class="p-float-label w-full">
+                    <input pInputText id="propertyName" />
+                    <label for="propertyName">Tên thuộc tính</label>
+                </div> -->
+        <div class="field w-full">
+          <label class="block common-word"
+            >Nhập giá trị (<span class="text-red-500"
+              >mỗi giá trị cách nhau bởi dấu #</span
+            >)</label
+          >
+          <input
+            id="propertyName"
+            [(ngModel)]="attributeEnumValue"
+            type="username"
+            aria-describedby="username1-help"
+            pInputText
+          />
+          <!-- <small id="username1-help" class="block">Enter your username to reset your password.</small> -->
+        </div>
+      </div>
+
+      <div class="action-button">
+        <div class="flex justify-end pb-3">
+          <div
+            class="btn-action cancle-btn text-base font-medium pt-1 pb-1 pl-3 pr-3 rounded-sm text-white bg-gray-400 cursor-pointer"
+          >
+            Hủy
+          </div>
+          <div
+            (click)="onAddAttributeEnumClick()"
+            class="btn-action ok-btn ml-4 text-base font-medium pt-1 pb-1 pl-3 pr-3 rounded-sm text-white bg-blue-500 cursor-pointer"
+          >
+            Thêm
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-dialog>
+</div>

@@ -1,0 +1,20 @@
+.router{
+    color: #212b36;
+}
+
+.common-word{
+    color: #212b36 !important;
+}
+.blur-word{
+    color: #637381 !important;
+}
+
+.blur-md-word{
+    color: #919eab !important;
+}
+
+.avatar-common img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

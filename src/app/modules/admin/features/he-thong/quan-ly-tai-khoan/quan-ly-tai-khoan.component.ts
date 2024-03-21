@@ -275,38 +275,39 @@ export class QuanLyTaiKhoanComponent implements OnInit {
 		}
 	}
 
-	loadData() {
-		this.data = [];
-		this.notificationService.isProcessing( true );
-		const userCanLoad                  = ( this.canEdit || this.canAdd || this.canDelete );
-		const loader$ : Observable<User[]> = userCanLoad ? this.userService.listUsers( this.userDonviId ) : of( [ this.auth.user ] );
-		loader$.pipe(
-			map( users => userCanLoad ? ( users.length ? users.filter( u => u.id !== this.auth.user.id ) : [] ) : users ) ,
-			switchMap( users => this.loadUsersRoles( users ) )
-		).subscribe( {
-			next  : ( [ users , roles ] ) => {
-				console.log( roles );
-				users.map( u => {
-					const uRoles = [];
-					if ( u.role_ids && u.role_ids.length ) {
-						u.role_ids.forEach( r => {
-							const index = r ? roles.findIndex( i => i.id === parseInt( r , 10 ) ) : -1;
-							if ( index !== -1 ) {
-								uRoles.push( '<span class="--user-role-label --role-' + roles[ index ].name + '">' + roles[ index ].title + '</span>' );
-							}
-						} , [] );
-					}
-					u[ 'u_role' ] = uRoles.join( ', ' );
-					return u;
-				} );
-				this.data = users;
-				this.notificationService.isProcessing( false );
-			} ,
-			error : () => {
-				this.notificationService.isProcessing( false );
-				this.notificationService.toastError( 'Load dữ liệu không thành công' );
-			}
-		} );
+	// ====> comments
+	// loadData() {
+	// 	this.data = [];
+	// 	this.notificationService.isProcessing( true );
+	// 	const userCanLoad                  = ( this.canEdit || this.canAdd || this.canDelete );
+	// 	const loader$ : Observable<User[]> = userCanLoad ? this.userService.listUsers( this.userDonviId ) : of( [ this.auth.user ] );
+	// 	loader$.pipe(
+	// 		map( users => userCanLoad ? ( users.length ? users.filter( u => u.id !== this.auth.user.id ) : [] ) : users ) ,
+	// 		switchMap( users => this.loadUsersRoles( users ) )
+	// 	).subscribe( {
+	// 		next  : ( [ users , roles ] ) => {
+	// 			console.log( roles );
+	// 			users.map( u => {
+	// 				const uRoles = [];
+	// 				if ( u.role_ids && u.role_ids.length ) {
+	// 					u.role_ids.forEach( r => {
+	// 						const index = r ? roles.findIndex( i => i.id === parseInt( r , 10 ) ) : -1;
+	// 						if ( index !== -1 ) {
+	// 							uRoles.push( '<span class="--user-role-label --role-' + roles[ index ].name + '">' + roles[ index ].title + '</span>' );
+	// 						}
+	// 					} , [] );
+	// 				}
+	// 				u[ 'u_role' ] = uRoles.join( ', ' );
+	// 				return u;
+	// 			} );
+	// 			this.data = users;
+	// 			this.notificationService.isProcessing( false );
+	// 		} ,
+	// 		error : () => {
+	// 			this.notificationService.isProcessing( false );
+	// 			this.notificationService.toastError( 'Load dữ liệu không thành công' );
+	// 		}
+	// 	} );
 		/*		forkJoin( [
 		 this.roleService.listRoles() ,
 		 this.userService.listUsers( this.userDonviId )
@@ -363,7 +364,7 @@ export class QuanLyTaiKhoanComponent implements OnInit {
 		const index = this.data.findIndex( dt => dt.id === id );
 		if ( index !== -1 ) {
 			const status   = this.data[ index ].status ? 0 : 1;
-			const username = this.data[ index ].username;
+			const username = this.data[ index ].name;
 			this.userService.updateUserInfo( id , { status , username } ).subscribe( {
 				next  : () => {
 					this.data[ index ].status = status;
@@ -374,26 +375,27 @@ export class QuanLyTaiKhoanComponent implements OnInit {
 		}
 	}
 
-	editUser( id ) {
-		this.changPassState = false;
-		const user          = this.data.find( u => u.id === id );
-		if ( user ) {
-			this.f[ 'role_ids' ].setValue( user.role_ids );
-			this.editUserId   = id;
-			this.isUpdateForm = true;
-			this.formTitle    = 'Cập nhật tài khoản';
-			this.f[ 'display_name' ].setValue( user.display_name );
-			this.f[ 'username' ].setValue( user.username );
-			this.f[ 'phone' ].setValue( user.phone );
-			this.f[ 'email' ].setValue( user.email );
-			this.f[ 'password' ].setValue( user.password );
-			this.f[ 'donvi_id' ].setValue( user.donvi_id );
-			this.f[ 'role_ids' ].setValue( user.role_ids.toString() );
-			this.f[ 'status' ].setValue( user.status );
-			this.callActionForm( this.tplCreateAccount ).then( () => this.loadData() , () => this.loadData() );
-			this.defaultPass = user.password;
-		}
-	}
+	// ====> comment
+	// editUser( id ) {
+	// 	this.changPassState = false;
+	// 	const user          = this.data.find( u => u.id === id );
+	// 	if ( user ) {
+	// 		this.f[ 'role_ids' ].setValue( user.role_ids );
+	// 		this.editUserId   = id;
+	// 		this.isUpdateForm = true;
+	// 		this.formTitle    = 'Cập nhật tài khoản';
+	// 		this.f[ 'display_name' ].setValue( user.display_name );
+	// 		this.f[ 'username' ].setValue( user.username );
+	// 		this.f[ 'phone' ].setValue( user.phone );
+	// 		this.f[ 'email' ].setValue( user.email );
+	// 		this.f[ 'password' ].setValue( user.password );
+	// 		this.f[ 'donvi_id' ].setValue( user.donvi_id );
+	// 		this.f[ 'role_ids' ].setValue( user.role_ids.toString() );
+	// 		this.f[ 'status' ].setValue( user.status );
+	// 		this.callActionForm( this.tplCreateAccount ).then( () => this.loadData() , () => this.loadData() );
+	// 		this.defaultPass = user.password;
+	// 	}
+	// }
 
 	async deleteUser( id ) {
 		const confirm = await this.notificationService.confirmDelete();
@@ -430,17 +432,18 @@ export class QuanLyTaiKhoanComponent implements OnInit {
 
 	async callActionForm( template ) : Promise<any> {
 		if ( this.dsNhomQuyen.length === 0 ) {
-			const u = await this.loadRolesUserCanSet();
-			if ( u.error ) {
-				this.notificationService.toastError( 'Không load được dữ liệu vui lòng kiểm tra lại kết nối mạng' );
-				return Promise.resolve();
-			} else {
-				if ( u.roles && u.roles.length ) {
-					this.dsNhomQuyen = u.roles;
-				} else {
-					return this.notificationService.alertInfo( 'Lỗi phân quyền' , 'Bạn chưa được phân quyền tạo tài khoản trên hệ thống này, vui lòng liên hệ quản trị viên để được giải đáp' , 'Đóng' );
-				}
-			}
+			// ====> commnet
+			// const u = await this.loadRolesUserCanSet();
+			// if ( u.error ) {
+			// 	this.notificationService.toastError( 'Không load được dữ liệu vui lòng kiểm tra lại kết nối mạng' );
+			// 	return Promise.resolve();
+			// } else {
+			// 	if ( u.roles && u.roles.length ) {
+			// 		this.dsNhomQuyen = u.roles;
+			// 	} else {
+			// 		return this.notificationService.alertInfo( 'Lỗi phân quyền' , 'Bạn chưa được phân quyền tạo tài khoản trên hệ thống này, vui lòng liên hệ quản trị viên để được giải đáp' , 'Đóng' );
+			// 	}
+			// }
 		}
 		const createUserForm = this.modalService.open( template , DEFAULT_MODAL_OPTIONS );
 		return createUserForm.result;
@@ -556,25 +559,25 @@ export class QuanLyTaiKhoanComponent implements OnInit {
 		this._reloadData$.next( '' );
 	}
 
-	async loadRolesUserCanSet() : Promise<{ roles : Role[], error : boolean }> {
-		const userRoleIds = this.auth.user.role_ids;
-		if ( Array.isArray( userRoleIds ) && userRoleIds.length > 1 ) {
-			const u   = userRoleIds.map( u => parseInt( u , 10 ) );
-			const min = Math.min( ... u );
-			const s   = u.filter( e => e !== min );
-			this.notificationService.startLoading();
-			try {
-				const error = false;
-				const roles = await firstValueFrom( this.roleService.listRolesFiltered( s.join( ',' ) , 'id,title,realm' ).pipe( map( r => r.filter( r => r.realm === APP_CONFIGS.realm ) ) ) );
-				this.notificationService.stopLoading();
-				return Promise.resolve( { error , roles } );
-			} catch ( e ) {
-				this.notificationService.stopLoading();
-				return Promise.resolve( { error : true , roles : [] } );
-			}
-		} else {
-			return Promise.resolve( { error : false , roles : [] } );
-		}
-	}
+	// async loadRolesUserCanSet() : Promise<{ roles : Role[], error : boolean }> {
+	// 	const userRoleIds = this.auth.user.role_ids;
+	// 	if ( Array.isArray( userRoleIds ) && userRoleIds.length > 1 ) {
+	// 		const u   = userRoleIds.map( u => parseInt( u , 10 ) );
+	// 		const min = Math.min( ... u );
+	// 		const s   = u.filter( e => e !== min );
+	// 		this.notificationService.startLoading();
+	// 		try {
+	// 			const error = false;
+	// 			const roles = await firstValueFrom( this.roleService.listRolesFiltered( s.join( ',' ) , 'id,title,realm' ).pipe( map( r => r.filter( r => r.realm === APP_CONFIGS.realm ) ) ) );
+	// 			this.notificationService.stopLoading();
+	// 			return Promise.resolve( { error , roles } );
+	// 		} catch ( e ) {
+	// 			this.notificationService.stopLoading();
+	// 			return Promise.resolve( { error : true , roles : [] } );
+	// 		}
+	// 	} else {
+	// 		return Promise.resolve( { error : false , roles : [] } );
+	// 	}
+	// }
 
 }

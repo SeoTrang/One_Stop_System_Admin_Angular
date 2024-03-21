@@ -24,10 +24,10 @@ const routes : Routes = [
 		path      : 'login' ,
 		component : LoginComponent
 	} ,
-	{
-		path      : 'login-2' ,
-		component : LoginV2Component
-	} ,
+	// {
+	// 	path      : 'login-2' ,
+	// 	component : LoginV2Component
+	// } ,
 	{
 		path      : 'content-none' ,
 		component : ContentNoneComponent

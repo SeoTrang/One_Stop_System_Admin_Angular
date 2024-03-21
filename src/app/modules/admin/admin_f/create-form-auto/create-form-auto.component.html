@@ -1,0 +1,98 @@
+<div id="create-form-auto">
+    <div class="title flex justify-between font-medium items-center ">
+        <div class="title-left flex text-xl">
+            <div class="icon">
+                <i class="pi pi-fw pi-users" style="font-size: 1em; font-weight: 500;" ></i>
+            </div>
+            <div class="text-value ml-1">
+                Thêm biểu mẫu
+            </div>
+        </div>
+
+        <div class="title-right">
+            <a routerLink="/manager/admin/form-auto" class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-arrow-left"></i>
+                <span>
+                    Quay lại
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Thêm biểu mẫu</span>
+        </div>
+    </div>
+    <div class="container-content-create-officer w-full">
+        
+        <div class="container-content mt-3 w-full md:flex">
+            <div class="box-left  w-full md:w-5/12 mb-2 md:flex md:justify-start">
+                <div class="content-box content-box-left bg-white rounded-md pl-3 pr-3 pt-3 pb-3 flex items-center justify-center">
+                    <div class="content">
+                        <div class="avatar flex items-center justify-center">
+                            <input class="hidden" id="avatar" type="file" (change)="onFileSelected($event)" accept=".docx">
+
+                            <label for="avatar" class="cursor-pointer">
+                                <div class="cicler-item border-dotted border-2 border-gray-300 p-1 flex items-center justify-center">
+                                    <div class="avatar-default flex items-center justify-center">
+                                        <div class=" flex justify-center items-center flex-col">
+                                            <div>
+                                                <i class="pi pi-camera" style="font-size: 20px;"></i>
+                                            </div>
+                                            <div >Chọn file</div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </label>
+                        </div>
+                        <div *ngIf="fileName" class="type-file flex justify-center mt-2">
+                          <span class="text-sm text-blue-500" >
+                            {{fileName}}
+                          </span>
+                      </div>
+                        <div class="type-file flex justify-center mt-2">
+                            <span class="text-sm">
+                                Các dạng file dưới 5 MB
+                            </span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="box-right  w-full md:w-7/12 mb-2 md:flex md:justify-end">
+                <div class="content-box content-box-right bg-white rounded-md pl-3 pr-3 pt-3 pb-3">
+                    <div class="select-item mb-4 w-full">
+                        <span class="p-float-label w-full">
+                            <p-treeSelect  [options]="dataDepartments" placeholder="Giới tính"></p-treeSelect>
+                        </span>
+                    </div>
+                    <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>#</th>
+                                <th>Code</th>
+                                <th>Name</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <tr>
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.name }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                    
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

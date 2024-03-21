@@ -15,7 +15,8 @@
                         </g>
                     </g>
                 </svg>
-                ICTU-LMS
+                <!-- <img src="./logo-tueba.png" alt=""> -->
+                1 CỬA TUEBA
             </h2>
             <div class="ovic-student-layout__header__icon">
                 <button class="btn ovic-student-layout__header-btn-collapse-menu" type="button" (click)="toggleMenu()">
@@ -49,6 +50,7 @@
                 <li class="ovic-student-layout__right-header-menu-item">
                     <admin-user-info></admin-user-info>
                 </li>
+               
                 <!--<li class="ovic-student-layout__right-header-menu-item position-relative ovic-student-layout__user-info" (mouseenter)="menuDropdownState='open'" (mouseleave)="menuDropdownState='close'">
                     <span class="btn ovic-student-layout__button-right-header"><i class="fa fa-user-o" aria-hidden="true"></i></span>
                     <div class="ovic-student-layout__header-dropdown" [@dropdown]="menuDropdownState">
@@ -91,9 +93,12 @@
 
     <!--section left menu-->
     <div class="ovic-student-layout__vertical-nav ovic-left-menu">
+       
         <p-scrollPanel [style]="{width: '100%', height: 'calc(100vh - 60px)'}" styleClass="ovic-scroll-panel--default">
             <p-panelMenu [model]="verticalMenu" [className]="'ovic-student-layout__vertical-nav__menu'"></p-panelMenu>
         </p-scrollPanel>
+
+        
     </div>
 
     <!--section right content-->

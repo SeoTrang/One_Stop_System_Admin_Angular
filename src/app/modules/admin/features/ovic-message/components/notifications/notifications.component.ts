@@ -194,13 +194,13 @@ export class NotificationsComponent implements OnInit {
 		} , {} );
 		const d                          = new Date();
 		const newNot : QuickNotification = {
-			code     : `${ this.auth.user.username }_${ d.getTime() }` ,
+			code     : `${ this.auth.user.name }_${ d.getTime() }` ,
 			title    : 'Some notice roles will be applied from September ICTU students need to know' + d.getTime() ,
 			message  : '<p class="text-muted">Dear User,</p><p class="text-muted">An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you: An unrecognized device or browser recently signed into your Storage account. Help us keep your account secure by letting us know if this was you:</p><p class="text-muted">Pichforest</p>' ,
 			sender   : this.auth.user.id ,
 			receiver : receiver ,
 			params   : {
-				author : this.auth.user.display_name ,
+				author : this.auth.user.name ,
 				email  : this.auth.user.email ,
 				avatar : this.auth.user.avatar ,
 				type   : 'normal'

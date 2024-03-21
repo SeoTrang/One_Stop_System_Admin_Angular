@@ -2,6 +2,86 @@ body .ui-widget {
 	font-family: 'Roboto', sans-serif;
 }
 
+.w-80{
+	width: 80%;
+}
+
+.w-95{
+	width: 95%;
+}
+.w-96{
+	width: 96%;
+}
+.w-97{
+	width: 97%;
+}
+.w-98{
+	width: 98%;
+}
+
+.img-square{
+	width: 36px;
+	height: 36px;
+}
+
+.color-common{
+	color: #212b36;
+}
+.bg-common{
+	background-color: #212b36;
+
+}
+
+.max-h-70vh{
+	max-height: 70vh;
+}
+
+
+.menu .btn-action{
+	width: 30px !important;
+	height: 30px !important;
+	border-radius: 50%;
+}
+
+.menu .btn-more{
+    background-color: #ffffff;
+    color: #9ca3af;
+
+}
+
+.menu .btn-more:hover{
+    background-color: #9ca3af;
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.menu .menu-view a:hover{
+    background-color: #22c55e29 !important;
+    
+}
+
+.menu .menu-view a:hover span{
+    color: #18af7a !important;
+}
+
+.menu .menu-delete a:hover{
+    background-color: rgb(255, 225, 230) !important;
+    color: #e94560 !important;
+}
+
+.menu .menu-delete a:hover span{
+    color: #e94560 !important;
+}
+
+.menu .menu-edit a:hover{
+    background-color: rgb(255 171 0 / 20%) !important;
+    color: #7a4100 !important;
+}
+
+.menu .menu-edit a:hover span{
+    color: #7a4100 !important;
+}
+
 .ovic-font-weight-bold {
 	font-weight: 700;
 }

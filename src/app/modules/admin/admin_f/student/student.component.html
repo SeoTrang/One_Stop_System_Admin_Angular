@@ -1,0 +1,109 @@
+<div id="officer-page-admin" class="box-container w-full pl-2 pr-2">
+    <div class="title flex justify-between font-medium items-center ">
+        <div class="title-left flex text-xl">
+            <div class="icon">
+                <i class="pi pi-fw pi-users" style="font-size: 1em; font-weight: 500;" ></i>
+            </div>
+            <div class="text-value ml-1">
+                Sinh viên
+            </div>
+        </div>
+
+        <div class="title-right">
+            <a routerLink="/manager/admin/create-student" class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-plus"></i>
+                <span>
+                    Thêm mới
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Sinh viên</span>
+        </div>
+    </div>
+
+    <div class="content w-full mt-2">
+        <div class="box-content bg-white rounded-md mt-4 pt-4 pb-4 pl-3 pr-3 w-full">
+            <div class="content-top w-full sm:flex">
+                <div class="filter mb-2 w-full sm:w-4/12 md:w-2/12">
+                    <div class="card flex justify-content-center">
+                        <p-multiSelect  [options]="cities" [(ngModel)]="selectedCities" optionLabel="name" defaultLabel="Chọn"></p-multiSelect>
+                    </div>
+                </div>
+
+                <div class="search mb-2 w-full sm:w-8/12 md:w-10/12">
+                    <div class="content-search md:pl-2 w-full flex items-center">
+                        <div class="p-input-icon-left w-11/12">
+                            <i class="pi pi-search"></i>
+                            <input class="w-full" type="text" pInputText [(ngModel)]="value" />
+                        </div>
+                        <div class="option w-1/12 flex justify-center items-center text-gray-400 cursor-pointer text-xl">
+                            <i (click)="menu.toggle($event)" class="fa-solid fa-ellipsis-vertical"></i>
+                            <!-- <p-toast></p-toast> -->
+                            <p-menu #menu [model]="menuItems" [popup]="true"></p-menu>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-table w-full">
+                <!-- <div class="card"> -->
+                    <p-table 
+                    [value]="officers" 
+                    [tableStyle]="{ 'min-width': '60rem' }" 
+                    [scrollable]="true"  
+                    [responsive]="true">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <!-- <th class="blur-word" style="width: 3em !important;">#</th> Thêm style cho cột thứ tự ở đây -->
+                                <th class="blur-word">Mã</th>
+                                <th class="common-word">Tên</th>
+                                <th class="blur-word">Email</th>
+                                <th class="blur-word">Điện thoại</th>
+                                <th class="blur-word">Thời gian</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-officer let-i="rowIndex">
+                            <tr>
+                                <!-- <td style="width: 3em !important;">{{ i + 1 }}</td> -->
+                                <td>{{ officer.identifier }}</td>
+                                <td>
+                                    <div class="flex items-center w-full">
+                                        <div class="left">
+                                            <div class="avatar-common">
+                                                <img [src]="officer.avatar" width="100">
+                                            </div>
+                                        </div>
+                                        <div class="right ml-3">
+                                            <div class="name common-word font-medium">
+                                                {{ officer.name }}
+                                            </div>
+                                            <div class="department-name text-sm blur-md-word">
+                                                {{ officer.department.name }}
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>{{ officer.email }}</td>
+                                <td>{{ officer.phone }}</td>
+                                <td>{{ officer.created_at }}</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    <div class="flex justify-content-center paginator">
+                        <p-paginator (onPageChange)="onPageChange($event)" [first]="firstItems" [rows]="rowsItems" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+                    </div>
+                <!-- </div> -->
+                
+                
+            </div>
+        </div>
+    </div>
+</div>

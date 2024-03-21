@@ -1,0 +1,161 @@
+
+/* officer */
+#officer-page-admin .filter > div > p-multiselect > .p-multiselect{
+    width: 100%;
+}
+.filter > div > p-multiselect > .p-multiselect{
+    width: 100%;
+}
+body > app-root > app-dashboard > div.ovic-student-layout.osl.ng-tns-c145-1.--layout-menu-full > div.ovic-student-layout__wrapper.ng-tns-c145-1 > app-officer > div > div.content.w-full.mt-2 > div > div > div > div > p-multiselect > div > div.ng-trigger.ng-trigger-overlayAnimation.ng-tns-c136-5.p-multiselect-panel.p-component.ng-star-inserted{
+    /* background-color: aqua !important; */
+	min-width: 320px;
+}
+
+
+.content-table table{
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.content-table .paginator span,
+.content-table .paginator button,
+.content-table .paginator button span{
+    font-size: 0.813rem !important;
+}
+
+.content-table .p-paginator{
+    height: 45px;
+}
+
+
+#officer-page-admin .content-table table th{
+    background-color: #ffffff !important;
+    /* color: #637381; */
+}
+
+
+.dots{
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgb(145, 158, 171);
+}
+
+.p-tabview-nav-content a:hover{
+    text-decoration: none;
+}
+
+
+#document .item-tab{
+    font-size: 0.875rem;
+} 
+
+/* item tab */
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link{
+    /* border-color: #212b36;
+    color: #212b36; */
+    font-weight: 500;
+}
+.p-tabview .p-tabview-nav .mat-tab-label-active .p-tabview-nav-link{
+    border-color: #212b36;
+    color: #212b36;
+    font-weight: 500;
+}
+
+.item-tab .baged-tab-item{
+    height: 24px;
+    min-width: 24px;
+    line-height: 0;
+    border-radius: 6px;
+    cursor: default;
+    -webkit-box-align: center;
+    align-items: center;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    padding: 0px 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.item-tab .baged-all{
+    color: rgb(255, 255, 255);
+    background-color: rgb(33, 43, 54);
+}
+
+.item-tab .baged-success{
+    color: #118d57;
+    background-color: #22c55e29;
+}
+
+
+.tab-view-custom .mat-tab-label-active .item-tab .baged-success{
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+.item-tab .baged-pedding{
+    color: #b76e00;
+    background-color: #ffab0029;
+}
+
+
+.tab-view-custom .mat-tab-label-active .item-tab .baged-pedding{
+    background-color: #ffab00;
+    color: #ffffff;
+}
+
+
+.item-tab .baged-cancled{
+    color: #b71d18;
+    background-color: #ff563029;
+}
+
+
+.tab-view-custom .mat-tab-label-active .item-tab .baged-cancled{
+    background-color: #ff5630;
+    color: #ffffff;
+}
+
+
+
+/* post */
+.box-home-post{
+
+}
+
+@media (min-width: 640px) {
+    .box-home-post {
+        width: 98%;
+    }
+}
+
+@media (max-width: 639px) {
+    .box-home-post {
+        width: 100%;
+    }
+}
+
+#post-page .box-content{
+    width: calc( 100% - 315px );
+    display: flex;
+    justify-content: center;
+}
+
+#post-page .container-post{
+    width: 860px;
+}
+
+#post-page .nav-post{
+    position: fixed !important;
+    right: 15px;
+    top: 75px;
+    width: 315px;
+    overflow-y: scroll;
+    height: 100vh;
+    z-index: 98;
+}

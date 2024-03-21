@@ -19,7 +19,6 @@ export class UserInfoComponent implements OnInit , OnDestroy {
 		avatar  : '../../../../assets/images/a_none.jpg' ,
 		email   : 'Email' ,
 		name    : 'User name' ,
-		display : 'User name' ,
 		role    : 'user role'
 	};
 
@@ -56,9 +55,12 @@ export class UserInfoComponent implements OnInit , OnDestroy {
 
 		const observerUpdateUser$ = this.auth.onSetUpUser().subscribe( {
 			next : user => {
+				console.log(user);
+				
+				console.log("hello world user info");
+				
 				this.currentUser.avatar  = user.avatar;
-				this.currentUser.name    = user.username;
-				this.currentUser.display = user.display_name;
+				this.currentUser.name    = user.name;
 				this.currentUser.email   = user.email;
 			}
 		} );

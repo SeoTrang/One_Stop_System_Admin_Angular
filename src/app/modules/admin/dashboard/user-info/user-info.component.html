@@ -2,7 +2,7 @@
     <button class="btn admin-user-info-box__btn" type="button" (click)="panel.toggle($event)">
         <img class="admin-user-info-box__img" [src]="currentUser.avatar | ovicSafeUrl" alt="">
         <div class="admin-user-info-box__info">
-            <h3 class="admin-user-info-box__info__user-name">{{ currentUser.display }}</h3>
+            <!-- <h3 class="admin-user-info-box__info__user-name">{{ currentUser.display }}</h3> -->
             <b class="admin-user-info-box__info__user-role-name">{{ currentUser.name }}</b>
             <!--<b class="admin-user-info-box__info__user-role-name">{{ currentUser.role }}</b>-->
         </div>

@@ -79,6 +79,9 @@ import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
 import { BindCssVariablesDirective } from './directives/bind-css-variables.directive';
 import { OvicLoggerDirective } from './directives/ovic-logger.directive';
+import { BarChartBasicComponent } from './components/bar-chart-basic/bar-chart-basic.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+
 
 @NgModule( {
 	declarations    : [
@@ -140,10 +143,12 @@ import { OvicLoggerDirective } from './directives/ovic-logger.directive';
 		OvicEditorDirective ,
 		OvicDropAndDragDirective ,
 		OvicMediaLoaderDirective,
-  BindCssVariablesDirective,
-  OvicLoggerDirective
+		BindCssVariablesDirective,
+		OvicLoggerDirective,
+		BarChartBasicComponent
 	] ,
 	imports         : [
+		NgApexchartsModule,
 		CommonModule ,
 		RouterModule ,
 		FormsModule ,
@@ -232,7 +237,8 @@ import { OvicLoggerDirective } from './directives/ovic-logger.directive';
 		OvicEditorDirective ,
 		OvicDropAndDragDirective ,
 		OvicMediaLoaderDirective ,
-		OvicLoggerDirective
+		OvicLoggerDirective,
+  		BarChartBasicComponent
 	]
 } )
 export class SharedModule {}
