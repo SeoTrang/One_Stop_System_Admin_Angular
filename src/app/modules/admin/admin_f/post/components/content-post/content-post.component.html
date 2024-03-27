@@ -1,1 +1,68 @@
-<div>content-post</div>
+<div class="content-post mt-3">
+
+    <div class="content-item-post flex flex-wrap justify-between">
+        
+        <!-- Render contents for conditions contents.length == 1 -->
+        <ng-container *ngIf="contents.length == 1">
+            <ng-container *ngFor="let content of contents">
+                <ng-container *ngIf="content.type == 'img'">
+                    <img class="rounded-md" [src]="apiUrl+content.content" alt="hhhha" />
+                </ng-container>
+                <ng-container *ngIf="content.type == 'video'">
+                    <video class="w-full rounded-md" controls>
+                        <source [src]="apiUrl+content.content" type="video/mp4" />
+                    </video>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+        <!-- Render contents for conditions contents.length == 2 or contents.length == 4 -->
+        <ng-container *ngIf="contents.length == 2 || contents.length == 4">
+            <div class="img w-49_5" *ngFor="let content of contents">
+                <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+            </div>
+        </ng-container>
+
+        <!-- Render contents for condition contents.length == 5 -->
+        <ng-container *ngIf="contents.length == 5">
+            <div class="img w-33" *ngFor="let content of contents">
+                <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+            </div>
+        </ng-container>
+
+        <!-- Render contents for conditions contents.length > 4 -->
+        <ng-container *ngIf="contents.length > 4">
+            <ng-container *ngFor="let content of contents; let i = index">
+                <ng-container *ngIf="i < 2">
+                    <div class="w-49_5 hello">
+                        <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="i == 4">
+                    <div class="w-33 relative">
+                        <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+                        <div class="w-full h-full img-count absolute top-0 z-10">
+                            <div class="w-full h-full flex items-center justify-center text-white font-medium">
+                                +{{ contents.length - (i+1) }}
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="i <= 3 && i >= 2">
+                    <div class="w-33">
+                        <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="contents.length == 3">
+            <ng-container *ngFor="let content of contents; let i = index">
+                <div class="w-33">
+                    <img class="rounded-md w-full" [src]="apiUrl+ content.content" alt="" />
+                </div>
+            </ng-container>
+        </ng-container>
+        
+    </div>
+</div>

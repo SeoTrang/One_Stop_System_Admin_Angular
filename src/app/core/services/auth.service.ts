@@ -237,6 +237,16 @@ export class AuthService {
     localStorage.setItem(USER_KEY, encrypt);
   }
 
+  getUserInfo(): User {
+    if(this._user) return this._user;
+    const encrypt = localStorage.getItem(USER_KEY);
+    if (encrypt) {
+      const decryptedData = this.decryptData(encrypt);
+      return JSON.parse(decryptedData);
+    }
+    return null; // Trả về null nếu không có dữ liệu trong localStorage
+  }
+
   setUserRole(roles: any) {
     console.log("setUserRole", roles);
     

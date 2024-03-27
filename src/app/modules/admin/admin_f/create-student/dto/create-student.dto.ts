@@ -5,10 +5,13 @@ export class CreateStudentDto{
     avatar: string;
     password: string;
     email: string;
-    department_id: string;
+    phone: string;
+    facultyId: string;
     address: string;
     gender: string;
     batch: string;
-    class: string;
+    in_class: string;
+
 
 }
+

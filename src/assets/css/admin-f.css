@@ -150,12 +150,33 @@ body > app-root > app-dashboard > div.ovic-student-layout.osl.ng-tns-c145-1.--la
     width: 860px;
 }
 
-#post-page .nav-post{
-    position: fixed !important;
-    right: 15px;
-    top: 75px;
-    width: 315px;
-    overflow-y: scroll;
-    height: 100vh;
-    z-index: 98;
+
+
+@media screen and (max-width: 767px){
+    #post-page .nav-post{
+        display: none ;
+        right: 15px;
+        top: 75px;
+        width: 315px;
+        overflow-y: scroll;
+        height: 100vh;
+        z-index: 98;
+    }
+
+    #post-page .box-content{
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    #post-page .nav-post{
+        display: block;
+        position: fixed !important;
+        right: 15px;
+        top: 75px;
+        width: 315px;
+        overflow-y: scroll;
+        height: 100vh;
+        z-index: 98;
+    }
 }

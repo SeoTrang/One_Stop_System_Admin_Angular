@@ -14,3 +14,31 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+#create-post .dialog-department .item{
+    border: 1px solid #ccc;
+}
+
+#create-post .option-title p-tree .p-ripple{
+    width: 0px;
+}
+
+
+
+/* #create-post .option-title .p-inputwrapper{
+    display: flex !important;
+    align-items: center;
+
+} */
+
+
+
+@media screen and (max-width:768px){
+    /* #create-post .option-title .selectoption{
+        max-width: 50%;
+        
+    } */
+    #create-post .option-title p-dropdown .p-dropdown-label{
+        max-width: 126px;
+    }
+}

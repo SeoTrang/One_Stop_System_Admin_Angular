@@ -40,6 +40,9 @@ import { ContentPostComponent } from './post/components/content-post/content-pos
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import { NavPostComponent } from './post/components/nav-post/nav-post.component';
 import { RbacComponent } from './RBAC/rbac.component';
+import { EditorComponent } from './components/editor/editor.component';
+import { ItemPostComponent } from './post/components/item-post/item-post.component';
+import { PreviewMediaComponent } from './post/components/create-post/preview-media/preview-media.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { RbacComponent } from './RBAC/rbac.component';
     CreatePostComponent,
     ContentPostComponent,
     NavPostComponent,
-    RbacComponent
+    RbacComponent,
+    EditorComponent,
+    ItemPostComponent,
+    PreviewMediaComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -11,6 +11,9 @@ export interface User {
 	created_at : string;
 	updated_at : string;
 	isAdmin? : number;
+	type_user: string;
+	in_class?: string;
+	department?: string;
 
 }
 

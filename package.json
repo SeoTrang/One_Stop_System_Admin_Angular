@@ -42,6 +42,7 @@
     "ngx-pinch-zoom": "^2.6.2",
     "ngx-plyr": "^4.0.0",
     "ngx-quill": "^18.0.0",
+    "ngx-quill-upload": "^2.0.0",
     "ngx-viewer": "^1.0.8",
     "plyr": "^3.7.2",
     "primeicons": "^6.0.1",

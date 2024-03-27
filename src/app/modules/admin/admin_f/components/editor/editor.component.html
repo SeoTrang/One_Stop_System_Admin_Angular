@@ -1,0 +1,52 @@
+<div id="quill-editor-component">
+    <div class="content-editor">
+
+          <quill-editor 
+          [(ngModel)]="contentDescription"
+          (onEditorCreated)="getEditorInstance($event)"
+          [styles]="{height: '250px'}"
+          placeholder="Enter Text"
+            (onSelectionChanged)="onSelectionChanged($event)"
+            (onContentChanged)="onContentChanged($event)"
+
+          >
+          </quill-editor>
+
+
+          <div [innerHTML]="contentDescription">
+            
+          </div>
+          <div>
+            {{contentDescription}}
+          </div>
+    </div>
+    <p-dialog header="Upload Files" [(visible)]="upLoadImgDecriptionVisible" [style]="{width: '50vw'}">
+        <div>
+          <div class="content">
+            <div class="content-upload">
+              <div class="box-upload">
+                  <input id="upload-file" class="hidden" type="file" accept="image/png, image/gif, image/jpeg">
+                  <label for="upload-file">
+                    
+                  </label>
+    
+              </div>
+              <div class="box-img">
+    
+              </div>
+            </div>
+            <div class="format-img">
+    
+            </div>
+          </div>
+          <div class="mt-5 flex justify-end items-center">
+            <button class="bg-gray-400 text-white p-2 mr-3">
+              Hủy
+            </button>
+            <button (click)="handleImageUploadModal()" class="bg-blue-500 text-white p-2">
+              OK
+            </button>
+          </div>
+        </div>
+    </p-dialog>
+</div>

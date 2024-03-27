@@ -8,5 +8,6 @@ export class CreateOfficerDto{
     department_id: string;
     address: string;
     gender: string;
+    phone: string;
 
 }

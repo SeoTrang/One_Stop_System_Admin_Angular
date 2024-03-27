@@ -31,46 +31,49 @@
       <div class="content-service">
         <div class="bg-white rounded-md mt-3 pt-3 pr-3 pl-3">
           <div class="title-box pb-4 font-medium">Thông tin dịch vụ</div>
-          <div class="line-items-field sm:flex">
-            <div class="field-item mb-4 mt-2 sm:w-6/12">
-              <span class="p-float-label w-full">
-                <input pInputText id="identifier" />
-                <label for="identifier">Tên dịch vụ</label>
-              </span>
+          <form action="#" [formGroup]="createServiceForm">
+            <div class="line-items-field sm:flex">
+              <div class="field-item mb-4 mt-2 sm:w-6/12">
+                <span class="p-float-label w-full">
+                  <input pInputText formControlName="name" id="name" />
+                  <label for="name">Tên dịch vụ</label>
+                </span>
+              </div>
+              <div class="field-item mb-4 mt-2 sm:w-6/12">
+                <span class="p-float-label w-full">
+                  <p-treeSelect
+                    [options]="dataDepartments"
+                    placeholder="Thuộc bộ phận"
+                    formControlName="department"
+                  ></p-treeSelect>
+                </span>
+              </div>
             </div>
-            <div class="field-item mb-4 mt-2 sm:w-6/12">
-              <span class="p-float-label w-full">
-                <p-treeSelect
-                  [options]="dataDepartments"
-                  placeholder="Thuộc bộ phận"
-                ></p-treeSelect>
-              </span>
+  
+            <div class="line-items-field sm:flex">
+              <div class="field-item mb-4 mt-2 sm:w-6/12">
+                <span class="p-float-label w-full">
+                  <input pInputText id="type" formControlName="type"/>
+                  <label for="type">Hình thức hỗ trợ</label>
+                </span>
+              </div>
+              <div class="field-item mb-4 mt-2 sm:w-6/12">
+                <span class="p-float-label w-full">
+                  <input pInputText id="time_hanle" formControlName="time_handle" />
+                  <label for="time_hanle">Thời gian xử lý</label>
+                </span>
+              </div>
             </div>
-          </div>
+          </form>
 
-          <div class="line-items-field sm:flex">
-            <div class="field-item mb-4 mt-2 sm:w-6/12">
-              <span class="p-float-label w-full">
-                <input pInputText id="identifier" />
-                <label for="identifier">Hình thức hỗ trợ</label>
-              </span>
-            </div>
-            <div class="field-item mb-4 mt-2 sm:w-6/12">
-              <span class="p-float-label w-full">
-                <input pInputText id="identifier" />
-                <label for="identifier">Thời gian xử lý</label>
-              </span>
-            </div>
-          </div>
-
-          <div class="line-items-field sm:flex">
+          <!-- <div class="line-items-field sm:flex">
             <div class="field-item mb-4 mt-2 sm:w-6/12">
               <span class="p-float-label w-full">
                 <input pInputText id="identifier" />
                 <label for="identifier">Mô tả</label>
               </span>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="bg-white rounded-md mt-3 pt-3 pr-3 pl-3">
@@ -96,18 +99,18 @@
               <div class="left mt-3 md:w-6/12">
                 <div class="w-98">
                   <div
-                    *ngIf="movies.length > 0"
+                    *ngIf="stepsBox.length > 0"
                     cdkDropList
                     class="example-list"
                     (cdkDropListDropped)="drop($event)"
                   >
                     <div
                       class="example-box"
-                      *ngFor="let movie of movies; index as i"
+                      *ngFor="let movie of stepsBox; index as i"
                       cdkDrag
                     >
                       <!-- <span>{{i+1}}</span> -->
-                      {{ movie }}
+                      {{ movie.label }}
                       <button
                         class="hover:text-red-500"
                         (click)="removeMovie(movie)"
@@ -117,7 +120,7 @@
                     </div>
                   </div>
                   <div
-                    *ngIf="movies.length == 0"
+                    *ngIf="stepsBox.length == 0"
                     class="example-list p-2 blur-word"
                   >
                     Vui lòng thêm các bước cần thiết để làm thủ tục
@@ -154,25 +157,10 @@
         <div class="bg-white rounded-md mt-3 pt-3 pb-5 pr-3 pl-3">
           <div class="container-add-description">
             <div class="title-box pb-4 font-medium">Mô tả các bước thực hiện dịch vụ</div>
-            <!-- <quill-editor [(ngModel)]="contentDescription"></quill-editor> -->
-
-            <!-- <p-editor [(ngModel)]="contentDescription" [style]="{ height: '320px' }"></p-editor> -->
-            <quill-editor 
-            [styles]="{height: '250px'}"
-            [(ngModel)]="contentDescription"
-            placeholder="Enter Text"
-            [modules]="quillConfig"
-            (onSelectionChanged)="onSelectionChanged($event)"
-            (onContentChanged)="onContentChanged($event)">
-          </quill-editor>
-          </div>
-
-          <div [innerHTML]="contentDescription">
-            
-          </div>
-          <div>
-            {{contentDescription}}
-          </div>
+            <app-editor 
+            [(contentDescription)]="contentDescription" 
+            (contentDescriptionChange)="onContentDescriptionChange($event)"
+            ></app-editor>
         </div>
 
         <div class="bg-white rounded-md mt-3 pt-3 pb-3 pr-3 pl-3">
@@ -303,7 +291,7 @@
               </button>
             </div>
             <div class="box-right sm:w-6/12 flex justify-center items-center mb-3">
-              <button class="bg-blue-500 text-white btn-action-creat-service rounded-t-sm w-80">
+              <button (click)="btnSave()" class="bg-blue-500 text-white btn-action-creat-service rounded-t-sm w-80">
                 Lưu lại
               </button>
             </div>
@@ -412,4 +400,7 @@
       </div>
     </div>
   </p-dialog>
+
+
+  
 </div>

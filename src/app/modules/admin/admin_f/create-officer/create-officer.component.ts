@@ -41,6 +41,7 @@ export class CreateOfficerComponent implements OnInit {
     address: ['',Validators.required],
     gender: ['',Validators.required],
     department_id: ['',Validators.required],
+    phone: ['',Validators.required],
   })
 
   constructor(
@@ -79,7 +80,7 @@ export class CreateOfficerComponent implements OnInit {
       },
       error: (error)=> {
         console.log(error);
-        
+        this.notificationService.toastError('Lấy dữ liệu phòng ban thất bại',"Thông báo")
       }
     })
   }
@@ -158,6 +159,7 @@ export class CreateOfficerComponent implements OnInit {
       return this.notificationService.toastError('Vui lòng nhập đầy đủ dữ liệu !',"Thông báo");
     }
 
+ 
     
     
     if(!this.checkValidPassword()){
@@ -177,6 +179,7 @@ export class CreateOfficerComponent implements OnInit {
     newOfficer.email = this.createOfficerForm.controls['email'].value;
     newOfficer.gender = this.createOfficerForm.controls['gender'].value.data;
     newOfficer.department_id = this.createOfficerForm.controls['department_id'].value.data;
+    newOfficer.phone = this.createOfficerForm.controls['phone'].value;
     newOfficer.password = this.password;
     newOfficer.avatar = linkAvatar[0] || null;
 
@@ -189,9 +192,10 @@ export class CreateOfficerComponent implements OnInit {
       next: (res) => {
         setTimeout(() => {
           this.loadingService.hideLoading();
-          this.notificationService.toastSuccess("Thêm thành công!","Thông báo");
-          this.resetForm();
-          
+          if(res != false){
+            this.notificationService.toastSuccess("Thêm thành công!","Thông báo");
+            this.resetForm();
+          }else this.notificationService.toastError('Thêm thất bại!',"Thông báo")
         }, 500);
       },
 

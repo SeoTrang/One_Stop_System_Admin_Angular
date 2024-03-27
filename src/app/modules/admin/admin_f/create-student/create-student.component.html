@@ -64,68 +64,80 @@
             <div class="box-right  w-full md:w-8/12 mb-2 md:flex md:justify-end">
                 <div class="content-box content-box-right bg-white rounded-md pl-3 pr-3 pt-3 pb-3">
                     <div class="content">
-                        <div class="line-items-field sm:flex">
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <input pInputText id="identifier" [(ngModel)]="createStudentDto.identifier" />
-                                    <label for="identifier">Mã</label>
-                                </span>
+                        <form action="#" [formGroup]="createStudentForm">
+                            <div class="line-items-field sm:flex">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="identifier" formControlName="identifier" />
+                                        <label for="identifier">Mã</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="name" formControlName="name" />
+                                        <label for="name">Họ tên</label>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <input pInputText id="name" [(ngModel)]="createStudentDto.name" />
-                                    <label for="name">Họ tên</label>
-                                </span>
+    
+                            <div class="line-items-field sm:flex">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="batch" formControlName="batch" />
+                                        <label for="batch">Khóa</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="class" formControlName="in_class" />
+                                        <label for="class">Lớp</label>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="line-items-field sm:flex">
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <input pInputText id="batch" [(ngModel)]="createStudentDto.batch" />
-                                    <label for="batch">Khóa</label>
-                                </span>
+    
+                            <div class="line-items-field sm:flex">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="address" formControlName="address" />
+                                        <label for="address">Địa chỉ</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <p-treeSelect formControlName="gender" [options]="genders" placeholder="Giới tính"></p-treeSelect>
+                                    </span>
+                                </div>
                             </div>
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <input pInputText id="class" [(ngModel)]="createStudentDto.class" />
-                                    <label for="class">Lớp</label>
-                                </span>
+    
+    
+                            <div class="line-items-field sm:flex ">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText type="email" id="email" formControlName="email" />
+                                        <label for="email">Email</label>
+                                    </span>
+                                </div>
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <input pInputText id="phone" formControlName="phone" />
+                                        <label for="phone">Số điện thoại</label>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="line-items-field sm:flex">
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <input pInputText id="identifier" [(ngModel)]="createStudentDto.address" />
-                                    <label for="identifier">Địa chỉ</label>
-                                </span>
+    
+                            <div class="line-items-field sm:flex ">
+                                <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                    <span class="p-float-label w-full">
+                                        <p-treeSelect formControlName="faculty" [options]="dataFaculties" placeholder="Khoa"></p-treeSelect>
+                                    </span>
+                                </div>
+                                
                             </div>
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <p-treeSelect [(ngModel)]="createStudentDto.gender" [options]="dataDepartments" placeholder="Giới tính"></p-treeSelect>
-                                </span>
-                            </div>
-                        </div>
-
-
+                        </form>
                         <div class="line-items-field sm:flex ">
                             <div class="field-item mb-4 mt-2 sm:w-6/12">
                                 <span class="p-float-label w-full">
-                                    <input pInputText type="email" id="email" [(ngModel)]="createStudentDto.email" />
-                                    <label for="email">Email</label>
-                                </span>
-                            </div>
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <p-treeSelect [(ngModel)]="createStudentDto.department_id" [options]="dataDepartments" placeholder="Phòng ban"></p-treeSelect>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="line-items-field sm:flex ">
-                            <div class="field-item mb-4 mt-2 sm:w-6/12">
-                                <span class="p-float-label w-full">
-                                    <p-password [toggleMask]="true"  [(ngModel)]="createStudentDto.password" [feedback]="true"></p-password>
+                                    <p-password [toggleMask]="true"  [(ngModel)]="password" [feedback]="true"></p-password>
                                     <label for="password">Mật khẩu</label>
                                 </span>
                             </div>
@@ -138,7 +150,7 @@
                         </div>
                     </div>
                     <div class="btn-save flex">
-                        <div class=" button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                        <div (click)="createStudent()" class=" button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
                             <!-- <i class="pi pi-arrow-left"></i> -->
                             <span>
                                 Thêm sinh viên

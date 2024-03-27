@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from '@env';
 
 @Component({
   selector: 'app-content-post',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentPostComponent implements OnInit {
 
+
+  @Input() contents: any;
+
+  apiUrl: string = environment.api;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.contents);
+    
   }
 
 }
