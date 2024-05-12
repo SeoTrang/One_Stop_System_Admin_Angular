@@ -9,3 +9,23 @@
         
     }
 }
+
+#rbac .btn-action-bottom .btn-action{
+    font-weight: 500;
+    padding: 10px;
+}
+
+#rbac .btn-action-bottom .btn-cancle{
+    background-color: #e94560;
+    color: #ffffff;
+}
+
+#rbac .btn-action-bottom .btn-submit{
+    background-color: var(--main-color-5);
+    color: #ffffff;
+}
+
+#rbac  .avatar img{
+    width: 180px;
+    height: 180px;
+}

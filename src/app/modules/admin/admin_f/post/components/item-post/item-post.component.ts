@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from '@core/models/user';
 import { AuthService } from '@core/services/auth.service';
 import { environment } from '@env';
+import { Officer } from '@modules/admin/admin_f/officer/interface/officer.interface';
 
 @Component({
   selector: 'app-item-post',
@@ -13,7 +14,7 @@ export class ItemPostComponent implements OnInit {
   @Input() post: any;
 
   apiUrl: string = environment.api;
-  userInfor: User;
+  userInfor: Officer;
   constructor(
     private authService: AuthService
   ) { }

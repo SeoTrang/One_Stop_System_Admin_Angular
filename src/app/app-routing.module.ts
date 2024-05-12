@@ -5,7 +5,7 @@ import { ModuleGuard } from '@core/guards/module.guard';
 const routes : Routes = [
 	{
 		path         : 'manager' ,
-		// canActivate  : [ ModuleGuard ] ,
+		canActivate  : [ ModuleGuard ] ,
 		loadChildren : () => import('@modules/admin/admin.module').then( m => m.AdminModule )
 	} ,
 	{

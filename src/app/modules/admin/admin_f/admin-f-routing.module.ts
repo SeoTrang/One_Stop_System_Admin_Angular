@@ -12,6 +12,8 @@ import { CreateFormAutoComponent } from './create-form-auto/create-form-auto.com
 import { DocumentComponent } from './document/document.component';
 import { PostComponent } from './post/post.component';
 import { RbacComponent } from './RBAC/rbac.component';
+import { DetailServiceComponent } from './detail-service/detail-service.component';
+import { DetailDocumentComponent } from './detail-document/detail-document.component';
 
 const routes: Routes = [
   {
@@ -62,10 +64,17 @@ const routes: Routes = [
     component: PostComponent
   },
   {
-    path: 'rbac',
+    path: 'rbac/:officer_id',
     component: RbacComponent
   },
-  
+  {
+    path: 'detail-service/:service_id',
+    component: DetailServiceComponent
+  },
+  {
+    path: 'detail-document/:document_id',
+    component: DetailDocumentComponent
+  },
 ];
 
 @NgModule({

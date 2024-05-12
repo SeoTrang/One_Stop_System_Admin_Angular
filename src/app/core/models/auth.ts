@@ -1,10 +1,11 @@
 import { User } from '@core/models/user';
 import { Ucase } from '@core/models/ucase';
+import { Officer } from '@modules/admin/admin_f/officer/interface/officer.interface';
 
 export interface Auth {
 	expires : string;
 	session_id : string;
-	user : User;
+	user : Officer;
 }
 
 export interface Token {

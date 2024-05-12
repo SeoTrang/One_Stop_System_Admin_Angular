@@ -59,8 +59,8 @@
                   </ng-template>
                   <div class="content-table">
                     <p-table 
-                        [value]="products" 
-                        [tableStyle]="{ 'min-width': '60rem', 'width': '100% '}" 
+                        [value]="documnets" 
+                        [tableStyle]="{ 'min-width': '70rem', 'width': '100% '}" 
                         [scrollable]="true"  
                         [responsive]="true">
                             <ng-template pTemplate="header">
@@ -69,57 +69,103 @@
                                     <th>Họ tên</th>
                                     <th>Dịch vụ</th>
                                     <th>Chịu trách nhiệm</th>
+                                    <th>Xử lí cuối cùng</th>
                                     <th>Thời gian</th>
                                     <th>Trạng thái</th>
-                                    <th></th>
+                                    <th style="max-width:150px"></th>
                                 </tr>
                             </ng-template>
-                            <ng-template pTemplate="body" let-product let-i="rowIndex">
+                            <ng-template pTemplate="body" let-document let-i="rowIndex">
                                 <tr>
                                     <td style="max-width:40px">{{ i+1 }}</td>
                                     <td>
                                         <div class="flex items-center w-full">
                                             <div class="left">
                                                 <div class="avatar-common">
-                                                    <img [src]="product.avatar" width="100">
+                                                    <img [src]="api+document.user.avatar" width="100">
                                                 </div>
                                             </div>
                                             <div class="right ml-3">
                                                 <div class="name common-word font-medium">
-                                                    {{ product.name }}
+                                                    {{ document.user.name }}
                                                 </div>
                                                 <div class="department-name text-sm blur-md-word">
-                                                    {{ product.class }}
+                                                    {{ document.in_class }}
         
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        {{product.service}}
+                                        {{document.service.name}}
                                     </td>
-                                    <td>{{ product.department }}</td>
-                                    <td>{{ product.updated_at }}</td>
-                                    <td>{{ product.status }}</td>
-                                    <td style="max-width:150px">
-                                        <div class="service-action flex items-center">
-                                            <div class="btn-action ml-2 mr-2 btn-view">
-                                                
-                                                <i class=" fa-solid fa-eye"></i>
+                                    <td>{{ document.department.name }}</td>
+                                    <td>
+                                        {{
+                                            document.proceduralStep.department.name
+                                        }}
+                                    </td>
+                                    <td>{{ document.created_at }}</td>
+                                    <td>
+                                        
+                                        <div  class="status">
+                                            <div class="pedding" *ngIf="document.status == 1">
+                                                Đang chờ
                                             </div>
-                                            <div class="btn-action ml-2 mr-2 btn-more">
-                                                <i (click)="onClickItemService(123)" (click)="menu2.toggle($event)" class="fa-solid fa-ellipsis-vertical"></i>
-                                                
+                                            <div class="success" *ngIf="document.status == 2">
+                                                Hoàn thành
                                             </div>
-    
-    
-                                            <!-- <div class="btn-action ml-2 mr-2 btn-edit">
-                                                <i class=" fa-solid fa-pen-to-square"></i>
+                                            <div class="cancled" *ngIf="document.status == 0">
+                                                Đã hủy
                                             </div>
-                                            <div class="btn-action ml-2 mr-2 btn-delete">
-                                                <i class=" fa-solid fa-trash"></i>
-                                            </div> -->
+                                            
                                         </div>
+                                    </td>
+                                    <td class="action" style="max-width:150px">
+                                       
+                                        <div *ngIf="document?.proceduralStep?.department?.id == officer?.department?.id">
+
+                                            <div *ngIf="!checkIsMeReceived(document)">
+                                                <div *ngIf="checkIfReceived(document)">
+                                                    Đã có người tiếp nhận
+                                                </div>
+                                                <div (click)="handleReceivedDocument(document)" class="btn-receive" *ngIf="!checkIfReceived(document)">
+                                                    Tiếp nhận
+                                                </div>
+                                            </div>
+                                            <div *ngIf="checkIsMeReceived(document)" class="service-action flex items-center">
+                                                <div class="btn-action btn-view">
+                                                    
+                                                    <i class=" fa-solid fa-eye"></i>
+                                                </div>
+                                                <div (click)="onClickItemService(document.id)" (click)="menu2.toggle($event)" class="btn-action btn-more">
+                                                    <i  class="fa-solid fa-ellipsis-vertical"></i>
+                                                    
+                                                </div>
+        
+        
+                                                <!-- <div class="btn-action ml-2 mr-2 btn-edit">
+                                                    <i class=" fa-solid fa-pen-to-square"></i>
+                                                </div>
+                                                <div class="btn-action ml-2 mr-2 btn-delete">
+                                                    <i class=" fa-solid fa-trash"></i>
+                                                </div> -->
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="document?.proceduralStep?.department?.id !== officer?.department?.id">
+                                            <div class="service-action flex items-center">
+                                                <div class="btn-action btn-view">
+                                                    
+                                                    <i class=" fa-solid fa-eye"></i>
+                                                </div>
+                                                <div class="btn-action btn-more pointer-events-none text-gray-200 cursor-not-allowed hover:cursor-not-allowed">
+                                                    <i  class="fa-solid fa-ellipsis-vertical"></i>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                     </td>
                                 </tr>
                             </ng-template>
@@ -296,4 +342,35 @@
 
     <!-- <p-toast></p-toast> -->
     <p-confirmDialog></p-confirmDialog>
+    <p-dialog header="Thông báo" [modal]="true" [(visible)]="visible_dialog_last_department" [style]="{ width: '25rem' }">
+        <div class="dialog-content">
+            <div class="mb-3">Để hoàn thành thủ tục vui lòng điền thông tin mô tả</div>
+            <textarea 
+                rows="5" 
+                class="w-full"
+                pInputTextarea 
+                [(ngModel)] = "description_document">
+            </textarea>
+        </div>
+        <div class="flex justify-content-end gap-2 mt-3">
+            <p-button label="Huỷ" severity="secondary" (click)="visible_dialog_last_department = false" ></p-button>
+            <p-button label="Xác nhận" (click)="handleAccepted_dialog_last_department()" ></p-button>
+        </div>
+    </p-dialog>
+
+    <p-dialog header="Thông báo" [modal]="true" [(visible)]="visible_dialog_cancled" [style]="{ width: '25rem' }">
+        <div class="dialog-content">
+            <div class="mb-3">Để hủy thủ tục vui lòng điền lí do</div>
+            <textarea 
+                rows="5" 
+                class="w-full"
+                pInputTextarea 
+                [(ngModel)] = "description_document">
+            </textarea>
+        </div>
+        <div class="flex justify-content-end gap-2 mt-3">
+            <p-button label="Huỷ" severity="secondary" (click)="visible_dialog_cancled = false" ></p-button>
+            <p-button label="Xác nhận" (click)="handleAccepted_dialog_cancled()" ></p-button>
+        </div>
+    </p-dialog>
 </div>

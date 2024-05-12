@@ -29,13 +29,13 @@
 
 #service-page-admin .service-action .btn-view{
     background-color: #ffffff;
-    color: #18af7a;
+    color: #18af7a !important;
 
 }
 
 #service-page-admin .service-action .btn-view:hover{
     background-color: #18af7a;
-    color: #ffffff;
+    color: #ffffff !important;
     transition: 0.3s;
 }
 
@@ -84,25 +84,25 @@
 }
 
 #service-page-admin .menu-view a:hover span{
-    color: #18af7a;
+    color: #18af7a !important;
 }
 
 #service-page-admin .menu-delete a:hover{
     background-color: rgb(255, 225, 230);
-    color: #e94560;
+    color: #e94560 !important;
 }
 
 #service-page-admin .menu-delete a:hover span{
-    color: #e94560;
+    color: #e94560 !important;
 }
 
 #service-page-admin .menu-edit a:hover{
     background-color: rgb(255 171 0 / 20%);
-    color: #7a4100;
+    color: #7a4100 !important;
 }
 
 #service-page-admin .menu-edit a:hover span{
-    color: #7a4100;
+    color: #7a4100 !important;
 }
 
 

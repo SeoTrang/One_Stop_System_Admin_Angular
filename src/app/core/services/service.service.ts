@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CreateAttribute, CreateAttributeFormEnum, CreateFormFile, CreateProceduralStep, CreateService } from "@core/models/service";
+import { CreateAttribute, CreateAttributeFormEnum, CreateFormFile, CreateProceduralStep, CreateService, Service } from "@core/models/service";
 import { environment } from "@env";
 import { Observable } from "rxjs";
 
@@ -35,4 +35,8 @@ export class ServiceService{
     }
 
 
+
+    getAllServices(): Observable<Service[]>{
+        return this.http.get<Service[]>(environment.api+ '/service/all-detail');
+    }
 }

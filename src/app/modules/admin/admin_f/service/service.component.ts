@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Service } from './interface/service.interface';
+
 import { PageEvent } from './interface/PageEvent.interface';
 import {ConfirmationService, MessageService} from 'primeng/api';
+import { ServiceService } from '@core/services/service.service';
+import { Service } from '@core/models/service';
 
 class City{
   name: string;
@@ -34,7 +36,11 @@ export class ServiceComponent implements OnInit {
 
     
 
-    constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+    constructor(
+      private confirmationService: ConfirmationService, 
+      private messageService: MessageService,
+      private serviceService: ServiceService
+    ) {}
 
   ngOnInit(): void {
     this.cities = [
@@ -102,44 +108,58 @@ export class ServiceComponent implements OnInit {
       }
     ];
 
-    this.services = [
-        {
-          id: 1,
-          name: 'Đăng ký nhận giấy chứng nhận sinh viên NCKH',
-          type: 'online, offline',
-          department:{
-            id: 1,
-            name: 'Phòng tài chính',
-            address: 'C1-101',
-            created_at: '10:22 4/3/2024',
-            updated_at: '10:22 4/3/2024'
-          },
-          used: '50',
-          description: '',
-          time_handle:'3 ngày',
-          created_at: '10:22 4/3/2024',
-          updated_at: '10:22 4/3/2024'
-        },
-        {
-          id: 2,
-          name: 'Đề nghị cấp phiếu điểm học tập năm học, toàn khóa',
-          type: 'online',
-          department:{
-            id: 1,
-            name: 'Phòng đào tạo',
-            address: 'C1-101',
-            created_at: '10:22 4/3/2024',
-            updated_at: '10:22 4/3/2024'
-          },
-          used: '50',
-          description: '',
-          time_handle:'2 ngày',
-          created_at: '10:22 4/3/2024',
-          updated_at: '10:22 4/3/2024'
-        },
+    // this.services = [
+    //     {
+    //       id: 1,
+    //       name: 'Đăng ký nhận giấy chứng nhận sinh viên NCKH',
+    //       type: 'online, offline',
+    //       department:{
+    //         id: 1,
+    //         name: 'Phòng tài chính',
+    //         address: 'C1-101',
+    //         created_at: '10:22 4/3/2024',
+    //         updated_at: '10:22 4/3/2024'
+    //       },
+    //       used: '50',
+    //       description: '',
+    //       time_handle:'3 ngày',
+    //       created_at: '10:22 4/3/2024',
+    //       updated_at: '10:22 4/3/2024'
+    //     },
+    //     {
+    //       id: 2,
+    //       name: 'Đề nghị cấp phiếu điểm học tập năm học, toàn khóa',
+    //       type: 'online',
+    //       department:{
+    //         id: 1,
+    //         name: 'Phòng đào tạo',
+    //         address: 'C1-101',
+    //         created_at: '10:22 4/3/2024',
+    //         updated_at: '10:22 4/3/2024'
+    //       },
+    //       used: '50',
+    //       description: '',
+    //       time_handle:'2 ngày',
+    //       created_at: '10:22 4/3/2024',
+    //       updated_at: '10:22 4/3/2024'
+    //     },
        
-    ]
+    // ]
     
+    this.onLoadServicedata();
+  }
+
+
+  onLoadServicedata(){
+    this.serviceService.getAllServices().subscribe({
+      next: (data) => {
+        this.services = data;
+      },
+      error: (err) => {
+        console.log(err);
+        
+      }
+    })
   }
 
   onPageChange(event: PageEvent) {

@@ -2,4 +2,65 @@
 
 }
 
+#document .status div{
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+#document .status .pedding{
+    color: #b76e00;
+    background-color: #ffab0029;
+}
+
+#document .pedding-active{
+    background-color: #ffab00;
+    color: #ffffff;
+}
+
+
+#document .cancled{
+    color: #b71d18;
+    background-color: #ff563029;
+}
+
+
+#document .cancled-active{
+    background-color: #ff5630;
+    color: #ffffff;
+}
+
+
+#document .success{
+    color: #118d57;
+    background-color: #22c55e29;
+}
+
+
+#document .success-active{
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
+#document .service-action .btn-action{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#document .btn-more:hover{
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+
+#document .btn-view:hover{
+    background-color: #22c55e;
+    color: #ffffff;
+}
+
 

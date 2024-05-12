@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Officer } from './interface/officer.interface';
+
 import { PageEvent } from './interface/PageEvent.interface';
+import { Student } from '@core/models/student';
+import { StudentService } from '@core/services/student.service';
+import { LoadingService } from '@core/services/loading.service';
+import { environment } from '@env';
 
 
 class City{
@@ -24,15 +28,18 @@ export class StudentComponent implements OnInit {
 
     menuItems: any[] | undefined;
 
-    officers!: Officer[];
+    students!: Student[];
 
     firstItems: number = 0;
 
     rowsItems: number = 10;
 
-    
+    api: string = environment.api;
 
-  constructor() { }
+  constructor(
+    private studentService: StudentService,
+    private loadingService: LoadingService
+  ) { }
 
   ngOnInit(): void {
     this.cities = [
@@ -56,45 +63,27 @@ export class StudentComponent implements OnInit {
         icon: 'pi pi-file-export'
       }
     ];
-    this.officers = [
-        {
-          id: 1,
-          identifier: 'DTO4801030041',
-          avatar: 'https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_13.jpg',
-          name: 'Ma Seo Tráng',
-          email: 'seotrangbh24@gmail.com',
-          phone: '0386640397',
-          isAdmin: true,
-          department:{
-            id: 1,
-            name: 'Phòng tài chính',
-            address: 'C1-101',
-            created_at: '10:22 4/3/2024',
-            updated_at: '10:22 4/3/2024'
-          },
-          created_at: '10:22 4/3/2024',
-          updated_at: '10:22 4/3/2024'
-        },
-        {
-          id: 2,
-          identifier: 'DTO4801030040',
-          name: 'Hương Thủy',
-          avatar: 'https://api-prod-minimal-v510.vercel.app/assets/images/avatar/avatar_9.jpg',
-          email: 'seotrangbh24@gmail.com',
-          phone: '0386640397',
-          isAdmin: true,
-          department:{
-            id: 1,
-            name: 'Phòng tài chính',
-            address: 'C1-101',
-            created_at: '10:22 4/3/2024',
-            updated_at: '10:22 4/3/2024'
-          },
-          created_at: '10:22 4/3/2024',
-          updated_at: '10:22 4/3/2024'
-        }
-    ]
     
+
+    this.onLoadStudent();
+    
+  }
+
+  onLoadStudent() {
+    this.loadingService.showLoading();
+    this.studentService.getAll().subscribe({
+      next: (data) => {
+        this.students = data;
+        setTimeout(() => {
+            this.loadingService.hideLoading();
+        }, 500);
+      },
+
+      error: (err) => {
+        console.log(err);
+        
+      }
+    })
   }
 
   onPageChange(event: PageEvent) {

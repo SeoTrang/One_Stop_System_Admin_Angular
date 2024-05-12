@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CreateStudent } from "@core/models/student";
+import { CreateStudent, Student } from "@core/models/student";
 import { environment } from "@env";
 import { catchError, map, Observable, of } from "rxjs";
 import { LoadingService } from "./loading.service";
@@ -27,5 +27,14 @@ export class StudentService {
                 return of(false); // Trả về false khi có lỗi
             })
         );
+    }
+
+
+    getAll(): Observable<Student[]>{
+        return this.http.get<Student[]>(environment.api+'/users/all');
+    }
+
+    getById(id: number): Observable< Student>{
+        return this.http.get<Student> (environment.api+'/users/'+id);
     }
 }

@@ -1,0 +1,83 @@
+#student-infor .content-box{
+    width: 98%;
+}
+#student-infor .content{
+    color: #919eab;
+}
+
+#student-infor .avatar-default{
+    width: 126px;
+    height: 126px;
+    background-color: #919eab14;
+    border-radius: 50%;
+    
+}
+
+#student-infor  .cicler-item{
+    border-radius: 50%;
+}
+
+#student-infor .avatar-value{
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+}
+#student-infor .avatar-value img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+#student-infor .p-treeselect-label{
+    color: #495057;
+}
+
+#student-infor .p-placeholder{
+    color: #495057 !important;
+    opacity: 1;
+}
+
+
+@media (min-width: 640px) {
+    #student-infor .box-right input{
+        width: 95% !important;
+    }
+    /* #student-infor .box-right .p-element .p-inputwrapper{
+        width: 100% !important;
+    } */
+
+    #student-infor .box-right .p-element .p-inputwrapper{
+        width: 95% !important;
+    }
+
+    #student-infor .box-right p-password input{
+        width: 100% !important;
+    }
+
+    /* #student-infor .box-right .p-password-input{
+        width: 95% !important;
+    } */
+    #student-infor .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+    
+}
+@media (max-width: 639px) {
+    #student-infor .box-right input{
+        width: 100% !important;
+    }
+
+    #student-infor .box-right .p-password-input{
+        width: 100% !important;
+    }
+
+    #student-infor .box-right .p-inputwrapper{
+        width: 100% !important;
+    }
+
+    #student-infor .p-input-icon-left>i, .p-input-icon-right>i{
+        right: 20px !important;
+    }
+}
+

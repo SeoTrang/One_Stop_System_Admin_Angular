@@ -1,4 +1,5 @@
 import { Department } from "./department.interface";
+import { Role } from "./role.interface";
 
 export interface Officer{
     id: number;
@@ -11,4 +12,5 @@ export interface Officer{
     isAdmin: boolean;
     created_at: string;
     updated_at: string;
+    roles?: Role[];
 }

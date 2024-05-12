@@ -1,0 +1,109 @@
+
+<div id="student-infor">
+    <div class="container-content mt-3 w-full md:flex">
+        <div class="box-left  w-full md:w-4/12 mb-2 md:flex md:justify-start">
+            <div class="content-box content-box-left bg-white rounded-md pl-3 pr-3 pt-3 pb-3 flex items-center justify-center">
+                <div class="content">
+                    <div class="avatar flex items-center justify-center">
+                        <!-- <input class="hidden" id="avatar" type="file" accept="*.jpeg, *.jpg, *.png," (change)="onFileSelectedAvatar($event)"> -->
+                        <div class="cursor-pointer">
+                            <div class="rounded-full avatar-value cicler-item border-dotted border-2 border-gray-300 p-1 flex items-center justify-center">
+                                
+                                <img class="rounded-full" [src]="api + this.student.avatar" alt="">
+
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="shorf-info flex flex-col items-center justify-center mt-2">
+                        <div class="text-lg">
+                            {{this.student.name}}
+                        </div>
+                        <div class="text-xs blur-word">
+                            {{this.student.faculty.name}}
+                        </div>
+
+                        <div class="text-base blur-word">
+                            {{this.student.email}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-right  w-full md:w-8/12 mb-2 md:flex md:justify-end">
+            <div class="content-box content-box-right bg-white rounded-md pl-3 pr-3 pt-3 pb-3">
+                <div class="content">
+                    <form action="#">
+                        <div class="line-items-field sm:flex">
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <input [disabled]="true" [value]="student.identifier"  pInputText />
+                                    <label>Mã</label>
+                                </span>
+                            </div>
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <input [disabled]="true"  [value]="student.batch" pInputText id="batch"/>
+                                    <label for="batch">Khóa</label>
+                                </span>
+                            </div>
+                        </div>
+    
+                        <div class="line-items-field sm:flex">
+                            
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <input [disabled]="true"  [value]="student.in_class"  pInputText id="class" />
+                                    <label for="class">Lớp</label>
+                                </span>
+                            </div>
+
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <input [disabled]="true"  pInputText id="address"  [value]="student.address" />
+                                    <label for="address">Địa chỉ</label>
+                                </span>
+                            </div>
+                        </div>
+    
+                        <div class="line-items-field sm:flex">
+                            
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+
+                                    <input *ngIf="student.gender == 'male'" [disabled]="true"  pInputText id="gender"  value="Nam" />
+                                    <input *ngIf="student.gender !== 'male'" [disabled]="true"  pInputText id="gender"  value="Nữ" />
+                                    <label for="address">Giới tính</label>
+                                </span>
+                            </div>
+
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <input [disabled]="true"  pInputText id="phone"  [value]="student.phone" />
+                                    <label for="phone">Số điện thoại</label>
+                                </span>
+                            </div>
+                        </div>
+    
+    
+                        
+    
+                        <!-- <div class="line-items-field sm:flex ">
+                            <div class="field-item mb-4 mt-2 sm:w-6/12">
+                                <span class="p-float-label w-full">
+                                    <p-treeSelect [disabled]="true"   [value]="student.identifier" [options]="dataFaculties" placeholder="Khoa"></p-treeSelect>
+                                </span>
+                            </div>
+                            
+                        </div> -->
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -13,6 +13,11 @@
     color: #919eab !important;
 }
 
+.avatar-common{
+    width: 40px;
+    height: 40px;
+}
+
 .avatar-common img{
     width: 40px;
     height: 40px;

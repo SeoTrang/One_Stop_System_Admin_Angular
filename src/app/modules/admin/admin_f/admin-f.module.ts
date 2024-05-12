@@ -43,7 +43,11 @@ import { RbacComponent } from './RBAC/rbac.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { ItemPostComponent } from './post/components/item-post/item-post.component';
 import { PreviewMediaComponent } from './post/components/create-post/preview-media/preview-media.component';
-
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { DetailServiceComponent } from './detail-service/detail-service.component';
+import { DetailDocumentComponent } from './detail-document/detail-document.component';
+import { StudentInforComponent } from './components/student-infor/student-infor.component';
 @NgModule({
   declarations: [
     OfficerComponent,
@@ -63,7 +67,10 @@ import { PreviewMediaComponent } from './post/components/create-post/preview-med
     RbacComponent,
     EditorComponent,
     ItemPostComponent,
-    PreviewMediaComponent
+    PreviewMediaComponent,
+    DetailServiceComponent,
+    DetailDocumentComponent,
+    StudentInforComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -91,7 +98,9 @@ import { PreviewMediaComponent } from './post/components/create-post/preview-med
     TabMenuModule,
     TagModule,
     MatTabsModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ButtonModule,
+    DropdownModule
   ],
   providers: [
     ConfirmationService

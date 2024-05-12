@@ -7,6 +7,7 @@ import { BUTTON_NO , BUTTON_YES } from '@core/models/buttons';
 import { NotificationService } from '@core/services/notification.service';
 import { OverlayPanel } from 'primeng/overlaypanel/overlaypanel';
 import { filter  } from 'rxjs/operators';
+import { environment } from '@env';
 
 @Component( {
 	selector    : 'admin-user-info' ,
@@ -31,6 +32,8 @@ export class UserInfoComponent implements OnInit , OnDestroy {
 	};
 
 	subscriptions = new Subscription();
+
+	api : string = environment.api;
 
 	// trackWindowScroll = new Subscription();
 

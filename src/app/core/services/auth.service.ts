@@ -41,6 +41,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { LangChangeEvent } from '@ngx-translate/core/lib/translate.service';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Officer } from '@modules/admin/admin_f/officer/interface/officer.interface';
 
 interface AppChangeLangEvent {
   lang: string;
@@ -53,7 +54,7 @@ interface AppChangeLangEvent {
 export class AuthService {
   private jwtHelper = new JwtHelperService();
 
-  private _user: User;
+  private _user: Officer;
 
   private _userMeta: UserMeta[];
 
@@ -65,7 +66,7 @@ export class AuthService {
 
   private triggerChangeLanguages$ = new Subject<AppChangeLangEvent>();
 
-  private onSetUser$ = new BehaviorSubject<User>(null);
+  private onSetUser$ = new BehaviorSubject<Officer>(null);
 
   private onSignIn$ = new BehaviorSubject<string>(null);
 
@@ -237,7 +238,7 @@ export class AuthService {
     localStorage.setItem(USER_KEY, encrypt);
   }
 
-  getUserInfo(): User {
+  getUserInfo(): Officer {
     if(this._user) return this._user;
     const encrypt = localStorage.getItem(USER_KEY);
     if (encrypt) {
@@ -293,11 +294,11 @@ export class AuthService {
     });
   }
 
-  get user(): User {
+  get user(): Officer {
     return this._user;
   }
 
-  set user(user: User) {
+  set user(user: Officer) {
     this._user = JSON.parse(JSON.stringify(user));
     if (user) {
       console.log("test xem vo khong");
@@ -310,7 +311,7 @@ export class AuthService {
     }
   }
 
-  updateUser(user: User) {
+  updateUser(user: Officer) {
     console.log(user);
 
     this.user = user;
@@ -318,7 +319,7 @@ export class AuthService {
     localStorage.setItem(USER_KEY, encrypt);
   }
 
-  onSetUpUser(): Observable<User> {
+  onSetUpUser(): Observable<Officer> {
     console.log("onSetUpUser Observable");
     
     return this.onSetUser$;

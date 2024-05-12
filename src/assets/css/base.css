@@ -3742,3 +3742,28 @@ code {
 	font-family: courier, monospace;
 	padding: 0 3px;
 }
+
+
+
+/* action table */
+.action-table .btn-action{
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.action-table .btn-more:hover{
+    background-color: #9ca3af;
+    color: #ffffff;
+}
+
+
+.action-table .btn-view:hover{
+    background-color: #22c55e;
+    color: #ffffff;
+}

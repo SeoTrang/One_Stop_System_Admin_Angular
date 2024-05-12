@@ -180,3 +180,38 @@ body > app-root > app-dashboard > div.ovic-student-layout.osl.ng-tns-c145-1.--la
         z-index: 98;
     }
 }
+
+
+#document p-menu .p-menuitem-link:hover span{
+    color: #ffffff;
+}
+
+
+#document p-table .action .btn-receive{
+    background-color: #22c55e;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+
+#document p-table .action .btn-receive:hover{
+    color: #118d57;
+    background-color: #22c55e29;
+    
+}
+
+
+.p-menu-list .p-menuitem a:hover span{
+    color: #ffffff !important;
+}
+
+
+
+
+#rbac p-dropdown .p-dropdown{
+    width: 100%;
+}
