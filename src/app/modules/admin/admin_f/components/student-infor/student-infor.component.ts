@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Document } from '@core/models/document';
 import { Gender } from '@core/models/gender';
@@ -25,6 +25,7 @@ class Faculties{
 })
 export class StudentInforComponent implements OnInit {
 
+  @Input() student_id: number;
   avatar ?: string| undefined;
 
   input_avatar: any;
@@ -51,13 +52,13 @@ export class StudentInforComponent implements OnInit {
     private studentService: StudentService,
     private file2Service: File2Service,
     private documentService: DocumenttService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.initDataFaculties();
     this.initDataGender();
-    this.onLoadDocument();
+    this.onLoadStudentInfor();
   }
 
   initDataGender(): void{
@@ -86,24 +87,10 @@ export class StudentInforComponent implements OnInit {
   }
 
 
-  onLoadDocument(){
-     this.documentService.getById(Number(this.document_id)).subscribe({
-      next: (data) => {
-        console.log(data);
-        
-        this.document = data;
-        this.onLoadStudentInfor(data.user_id)
-      },
+  
 
-      error: (err) =>{
-        console.log(err);
-        
-      }
-     })
-  }
-
-  onLoadStudentInfor(student_id: number){
-    this.studentService.getById(student_id).subscribe({
+  onLoadStudentInfor(){
+    this.studentService.getById(this.student_id).subscribe({
       next: (data) => {
         this.student = data
         console.log(data);

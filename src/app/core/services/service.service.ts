@@ -39,4 +39,8 @@ export class ServiceService{
     getAllServices(): Observable<Service[]>{
         return this.http.get<Service[]>(environment.api+ '/service/all-detail');
     }
+
+    getOneById(id: number) : Observable<any>{
+        return this.http.get<any>(environment.api+'/service/'+id);
+    }
 }

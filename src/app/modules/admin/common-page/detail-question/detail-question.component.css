@@ -1,15 +1,16 @@
-#question .content-message{
+#detail-question .list-question .content-message{
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-#question .message-item{
+/* #detail-question .message-item{
     border-top: 1px solid #ccc;
-}
-#question .message-item:hover{
+} */
+#detail-question .list-question .message-item:hover{
     /* box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15); */
     background-color: rgb(247 248 250);
 }
+

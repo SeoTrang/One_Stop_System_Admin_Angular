@@ -48,6 +48,8 @@ export interface AttributeFormEnum {
   attributeFormService?: AttributeFormService;
 }
 
+
+
 export interface AttributeValue {
   id: number;
   value: string;
@@ -55,6 +57,7 @@ export interface AttributeValue {
   updated_at: string;
   document?: Document;
   attributeFormService?: AttributeFormService;
+  enum: AttributeFormEnum
 }
 
 export interface AttributeFormService {
@@ -77,6 +80,7 @@ export interface AttributeFormService {
 }
 
 export interface Service {
+  id?: number;
   name: string;
   type: string;
   time_handle: string;

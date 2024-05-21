@@ -48,6 +48,12 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DetailServiceComponent } from './detail-service/detail-service.component';
 import { DetailDocumentComponent } from './detail-document/detail-document.component';
 import { StudentInforComponent } from './components/student-infor/student-infor.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { QuestionComponent } from '../common-page/question/question.component';
+import { DetailQuestionComponent } from '../common-page/detail-question/detail-question.component';
+import { ContainerDetailQuestionComponent } from '../common-page/components/container-detail-question/container-detail-question.component';
+import { ImageModule } from 'primeng/image';
+
 @NgModule({
   declarations: [
     OfficerComponent,
@@ -70,7 +76,10 @@ import { StudentInforComponent } from './components/student-infor/student-infor.
     PreviewMediaComponent,
     DetailServiceComponent,
     DetailDocumentComponent,
-    StudentInforComponent
+    StudentInforComponent,
+    QuestionComponent,
+    DetailQuestionComponent,
+    ContainerDetailQuestionComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -100,7 +109,9 @@ import { StudentInforComponent } from './components/student-infor/student-infor.
     MatTabsModule,
     InputTextareaModule,
     ButtonModule,
-    DropdownModule
+    DropdownModule,
+    CheckboxModule,
+    ImageModule
   ],
   providers: [
     ConfirmationService

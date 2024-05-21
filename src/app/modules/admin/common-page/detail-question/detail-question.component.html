@@ -1,0 +1,101 @@
+<div id="detail-question">
+    <div class="title flex justify-between font-medium items-center">
+        <div class="title-left flex text-xl">
+            <div class="icon">
+                <i class="pi pi-fw pi-question" style="font-size: 1em; font-weight: 500;" ></i>
+            </div>
+            <div class="text-value ml-1">
+                Chi tiết câu hỏi
+            </div>
+        </div>
+
+        <div class="title-right">
+            <a routerLink="/manager/admin/question" class="no-underline hover:no-underline button-add text-white bg-black pt-2 pb-2 pl-2 pr-2 rounded-md cursor-pointer">
+                <i class="pi pi-arrow-left"></i>
+                <span>
+                    Quay lại
+                </span>
+            </a>
+        </div>
+     
+       
+        
+    </div>
+    <div class="router w-full text-sm mb-2 mt-2">
+        <div class="flex items-center">
+            <span class="route-item">Trang chủ</span>
+            <span class="dots ml-2 mr-2"></span>
+            <span class="route-item">Chi tiết câu hỏi</span>
+        </div>
+    </div>
+
+    <div class="container-content bg-white pt-3 pb-4 pl-3 pr-3 w-full"> 
+        <div class="flex">
+            <div class="section-left w-4/12">
+                <div class="search w-full">
+                    <div class="search mb-2 w-full w-full">
+                        <div class="content-search md:pl-2 w-full flex items-center">
+                            <div class="p-input-icon-left w-full">
+                                <i class="pi pi-search"></i>
+                                <input class="w-full" type="text" placeholder="Bạn tìm gì..." pInputText [(ngModel)]="inputValue" />
+                            </div>
+                            
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="list-question mt-3">
+                    <div class="message-item pt-3 pb-3 pl-2 pr-2">
+                        <div class="cursor-pointer">
+                                <div class="user-infor-left">
+                                    <div class="flex">
+                                        <div class="avatar-common" style="min-width: 40px;">
+                                            <img src="http://localhost:3000/uploads/common/1.jpg" alt="">
+                                        </div>
+                                        <div class="user-short-info ml-3">
+                                            <div class="name common-word font-medium"> Ma Seo Tráng </div>
+                                            <div class="department-name text-sm blur-md-word font-medium content-message">
+                                                Web/App Developer (Java, Javascript, PHP) and 2 more jobs for you
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+
+                    <div class="message-item pt-3 pb-3 pl-2 pr-2">
+                        <div class="cursor-pointer">
+                                <div class="user-infor-left">
+                                    <div class="flex">
+                                        <div class="avatar-common" style="min-width: 40px;">
+                                            <img src="http://localhost:3000/uploads/common/1.jpg" alt="">
+                                        </div>
+                                        <div class="user-short-info ml-3">
+                                            <div class="name common-word font-medium"> Ma Seo Tráng </div>
+                                            <div class="department-name text-sm  font-medium content-message">
+                                                Web/App Developer (Java, Javascript, PHP) and 2 more jobs for you
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
+                        </div>
+                    </div>
+        
+           
+                </div>
+            </div>
+
+            <div class="section-right  w-8/12">
+               <div class="md:ml-3">
+                <app-container-detail-question></app-container-detail-question>
+               </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

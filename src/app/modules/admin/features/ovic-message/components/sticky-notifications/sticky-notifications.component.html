@@ -20,7 +20,9 @@
                     </button>
                 </div>
                 <div class="ovic-navigation-content__body">
-                    <ng-container *ngTemplateOutlet="list_content"></ng-container>
+                    <ng-container *ngTemplateOutlet="list_content">
+                        
+                    </ng-container>
                 </div>
                 <div class="ovic-navigation-content__foot">
                     <button class="text-muted btn-read-more" (click)="goToListNotifications()">
@@ -45,18 +47,21 @@
 </div>
 
 <ng-template #list_content>
-    <ng-container *ngIf="!errorLoading && data">
+    <ng-container *ngIf="notificatios">
         <ul class="ovic-notifications-box__list-message ovic-student-scroll-style" [ngClass]="[ isLoading ? 'ovic-is-loading overflow-hidden' : '']">
-            <li class="--notify-element-index-{{ i }}" *ngFor="let node of data, index as i">
+            <li class="--notify-element-index-{{ i }}" *ngFor="let node of notificatios, index as i">
                 <div class="ovic-notifications-box__notice-content">
-                    <button class="ovic-notifications-box__notice-content__inner" (click)="getDetail(node)">
+                    <!-- (click)="getDetail(node)" -->
+                    <button class="ovic-notifications-box__notice-content__inner"  [style]="node.notification_receivers.length > 0 ? (node.notification_receivers[0].is_read ? '' : 'background-color: #e2eaff;') : '' "> 
                         <div class="ovic-notifications-box__notice-content__left">
-                            <img [src]="node.avatar" alt="">
+                            <img [src]="api + node.actor.avatar" alt="">
                         </div>
                         <div class="ovic-notifications-box__notice-content__right">
-                            <h6 class="ovic-notifications-box__notice-content__head-text" [innerHTML]="node.title | removeHtmlTags"></h6>
-                            <p class="ovic-notifications-box__notice-content__text" [innerHTML]="node.message | removeHtmlTags"></p>
-                            <span class="ovic-notifications-box__notice-content__date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{node[ '__time' ] || '____'}}</span>
+                            <h6 class="ovic-notifications-box__notice-content__head-text" [innerHTML]="node.notification_type.type | removeHtmlTags"></h6>
+                            <p class="ovic-notifications-box__notice-content__text" *ngIf="node.entity_reference" [innerHTML]="node.entity_reference | removeHtmlTags"></p>
+                            <p class="ovic-notifications-box__notice-content__text" *ngIf="node.entity" [innerHTML]="node.entity | removeHtmlTags"></p>
+                            <span class="ovic-notifications-box__notice-content__date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{node.updated_at || '____'}}</span>
+                            <!-- <span class="ovic-notifications-box__notice-content__date"><i class="fa fa-clock-o" aria-hidden="true"></i>{{node[ '__time' ] || '____'}}</span> -->
                         </div>
                     </button>
                 </div>

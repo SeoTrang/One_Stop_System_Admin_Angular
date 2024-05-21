@@ -112,7 +112,10 @@
                                             <div class="pedding" *ngIf="document.status == 1">
                                                 Đang chờ
                                             </div>
-                                            <div class="success" *ngIf="document.status == 2">
+                                            <div class="pedding" *ngIf="document.status == 2">
+                                                Đang xử lí
+                                            </div>
+                                            <div class="success" *ngIf="document.status == 3">
                                                 Hoàn thành
                                             </div>
                                             <div class="cancled" *ngIf="document.status == 0">
@@ -134,10 +137,10 @@
                                                 </div>
                                             </div>
                                             <div *ngIf="checkIsMeReceived(document)" class="service-action flex items-center">
-                                                <div class="btn-action btn-view">
+                                                <a [routerLink]="'/detail-document/'+document.id" class="btn-action btn-view">
                                                     
                                                     <i class=" fa-solid fa-eye"></i>
-                                                </div>
+                                                </a>
                                                 <div (click)="onClickItemService(document.id)" (click)="menu2.toggle($event)" class="btn-action btn-more">
                                                     <i  class="fa-solid fa-ellipsis-vertical"></i>
                                                     
@@ -155,10 +158,10 @@
 
                                         <div *ngIf="document?.proceduralStep?.department?.id !== officer?.department?.id">
                                             <div class="service-action flex items-center">
-                                                <div class="btn-action btn-view">
+                                                <a [routerLink]="'/manager/admin/detail-document/'+document.id" class="btn-action btn-view">
                                                     
                                                     <i class=" fa-solid fa-eye"></i>
-                                                </div>
+                                                </a>
                                                 <div class="btn-action btn-more pointer-events-none text-gray-200 cursor-not-allowed hover:cursor-not-allowed">
                                                     <i  class="fa-solid fa-ellipsis-vertical"></i>
                                                     

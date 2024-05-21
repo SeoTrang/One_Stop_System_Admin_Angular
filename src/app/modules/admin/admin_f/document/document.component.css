@@ -58,6 +58,10 @@
 }
 
 
+#document .btn-view{
+    text-decoration: none;
+    color: #22c55e;
+}
 #document .btn-view:hover{
     background-color: #22c55e;
     color: #ffffff;

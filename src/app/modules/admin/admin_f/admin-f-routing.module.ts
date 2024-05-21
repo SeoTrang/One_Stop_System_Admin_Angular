@@ -14,6 +14,8 @@ import { PostComponent } from './post/post.component';
 import { RbacComponent } from './RBAC/rbac.component';
 import { DetailServiceComponent } from './detail-service/detail-service.component';
 import { DetailDocumentComponent } from './detail-document/detail-document.component';
+import { QuestionComponent } from '../common-page/question/question.component';
+import { DetailQuestionComponent } from '../common-page/detail-question/detail-question.component';
 
 const routes: Routes = [
   {
@@ -74,6 +76,14 @@ const routes: Routes = [
   {
     path: 'detail-document/:document_id',
     component: DetailDocumentComponent
+  },
+  {
+    path: 'question',
+    component: QuestionComponent
+  },
+  {
+    path: 'detail-question/:question_id',
+    component: DetailQuestionComponent
   },
 ];
 

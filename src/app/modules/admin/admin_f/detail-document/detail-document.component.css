@@ -1,0 +1,39 @@
+
+#detail-document .status div{
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+#detail-document .status .pedding{
+    color: #b76e00;
+    background-color: #ffab0029;
+}
+
+#detail-document .pedding-active{
+    background-color: #ffab00;
+    color: #ffffff;
+}
+
+
+#detail-document .cancled{
+    color: #b71d18;
+    background-color: #ff563029;
+}
+
+
+#detail-document .cancled-active{
+    background-color: #ff5630;
+    color: #ffffff;
+}
+
+
+#detail-document .success{
+    color: #118d57;
+    background-color: #22c55e29;
+}
+
+
+#detail-document .success-active{
+    background-color: #22c55e;
+    color: #ffffff;
+}

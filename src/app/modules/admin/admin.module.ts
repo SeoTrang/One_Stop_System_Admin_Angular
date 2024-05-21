@@ -33,9 +33,11 @@ import { ServiceComponent } from './admin_f/service/service.component';
 // import { FormAutoComponent } from './admin_f/form-auto/form-auto.component';
 // import { DocumentComponent } from './admin_f/document/document.component';
 import { PostComponent } from './common-page/post/post.component';
-import { QuestionComponent } from './common-page/question/question.component';
+// import { QuestionComponent } from './common-page/question/question.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { TableModule } from 'primeng/table';
+// import { ContainerDetailQuestionComponent } from './common-page/components/container-detail-question/container-detail-question.component';
+// import { DetailQuestionComponent } from './common-page/detail-question/detail-question.component';
 
 @NgModule( {
 	declarations : [
@@ -53,7 +55,7 @@ import { TableModule } from 'primeng/table';
 		// FormAutoComponent,
 		// DocumentComponent,
 		PostComponent,
-		QuestionComponent
+  
 	] ,
 	imports      : [
 		CommonModule ,

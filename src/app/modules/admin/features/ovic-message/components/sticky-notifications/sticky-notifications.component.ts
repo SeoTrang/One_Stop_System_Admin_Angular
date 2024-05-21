@@ -7,6 +7,11 @@ import { AutoUnsubscribeOnDestroy } from '@core/utils/decorator';
 import { Router } from '@angular/router';
 import { NotificationMessage } from '../../models/notification';
 import { filter , map } from 'rxjs/operators';
+import { AccountNotificationService } from '@core/services/account-notification.service';
+import { AccountNotificationModel } from '@core/models/AccountNotification';
+import { LoadingService } from '@core/services/loading.service';
+import { environment } from '@env';
+import { TimeAgoService } from '@core/helper/timeSince';
 
 @Component( {
 	selector    : 'sticky-notifications' ,
@@ -30,11 +35,17 @@ export class StickyNotificationsComponent implements OnInit {
 
 	loadDataEvent$ = new Subject<any>();
 
+	api: string;
+	notificatios: AccountNotificationModel[];
+
 	constructor(
 		private auth : AuthService ,
 		private notificationService : NotificationService ,
 		private messageNotifyService : MessageNotifyService ,
-		private router : Router
+		private router : Router,
+		private accountNotificationService : AccountNotificationService,
+		private loadingService : LoadingService,
+		private timeAgoService: TimeAgoService
 	) {
 		const observerSocketChangeStatus           = this.messageNotifyService.socketStatus.subscribe( status => console.log( status ) );
 		const observerUserOnline                   = this.messageNotifyService.onUserOnline.subscribe( status => console.log( status ) );
@@ -69,7 +80,41 @@ export class StickyNotificationsComponent implements OnInit {
 	}
 
 	ngOnInit() : void {
-		this.loadData();
+		// this.loadData();
+		this.loadData2();
+		this.api = environment.api;
+	}
+
+	loadData2(){
+		this.loadingService.showLoading();
+		this.accountNotificationService.getNotification().subscribe({
+			next: data => {
+				console.log(data);
+				
+				this.loadingService.hideLoading()
+				this.notificatios = data.map((notification) => {
+					let notification2:AccountNotificationModel = notification
+					notification2.updated_at = this.timeAgoService.timeSince(notification2.updated_at);
+					return notification;
+				});
+				
+				
+				let notificationNotRead = data.filter((value) => {
+					if(value.notification_receivers.length > 0) return !value.notification_receivers[0].is_read
+					return false;
+					
+				});
+				console.log(notificationNotRead.length);
+				
+				this.countNotifications = notificationNotRead.length;
+			},
+
+			error: err => {
+				this.loadingService.hideLoading()
+				console.log(err);
+				
+			}
+		})
 	}
 
 	loadData() {

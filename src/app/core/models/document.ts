@@ -1,5 +1,5 @@
 import { Department } from "./department";
-import { Service } from "./service";
+import { AttributeValue, Service } from "./service";
 import { Student } from "./student";
 
 export class UpdateDocumentDto{
@@ -51,7 +51,7 @@ export interface Document{
     // proceduralStep?: ProceduralStep;
 
     
-    // attributeValues?: AttributeValue[];
+    attributeValues?: AttributeValue[];
 
 
    

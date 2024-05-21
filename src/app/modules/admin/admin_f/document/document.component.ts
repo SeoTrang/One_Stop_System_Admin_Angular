@@ -140,7 +140,7 @@ export class DocumentComponent implements OnInit {
     }
     console.log(document);
 
-    if (document.status == 2) {
+    if (document.status == 3) {
       return (this.checkServiceIsSuccess = true);
     }
     return (this.checkServiceIsSuccess = false);
@@ -241,6 +241,7 @@ export class DocumentComponent implements OnInit {
   // kiểm tra nếu chưa có cán bộ giảng nào tiếp nhận thủ tục này hoặc thủ tục đã bị từ chối tiếp nhận
   checkIfReceived(document: any): boolean {
     console.log(document);
+    console.log('-------------------------------- hello world');
     
     let result: boolean = false;
     if (document.documentActivityTraces.length <= 0) {
@@ -252,7 +253,9 @@ export class DocumentComponent implements OnInit {
         index < document.documentActivityTraces.length;
         index++
       ) {
-        if (document.documentActivityTraces[index].status == 'resolve' && document.documentActivityTraces[index].proceduralStep.department.id == this.officer.department.id) {
+        if (document.documentActivityTraces[index].status == 'resolve' && 
+        document.documentActivityTraces[index].proceduralStep.department.id == this.officer.department.id && 
+        document.documentActivityTraces[index].proceduralStep.id == document.proceduralStep.id) {
           
           // console.log(document);
           
@@ -267,6 +270,9 @@ export class DocumentComponent implements OnInit {
   // kiểm tra xem có phải tôi là người tiếp nhận thủ tục không. nếu là tôi thì hiển thị ra menu để xử lí thủ tục
   checkIsMeReceived(document: any): boolean {
     let result: boolean = false;
+    // console.log(document);
+    
+    // return false;
     if (document.documentActivityTraces.length <= 0) {
       return false;
     } else {
@@ -277,7 +283,9 @@ export class DocumentComponent implements OnInit {
       ) {
         if (
           document.documentActivityTraces[index].status == 'resolve' &&
-          document.documentActivityTraces[index].officer.id == this.officer.id
+          document.documentActivityTraces[index].officer.id == this.officer.id &&
+          document.documentActivityTraces[index].proceduralStep.department.id == this.officer.department.id && 
+          document.documentActivityTraces[index].proceduralStep.id == document.proceduralStep.id
         ) {
           console.log('hello');
           

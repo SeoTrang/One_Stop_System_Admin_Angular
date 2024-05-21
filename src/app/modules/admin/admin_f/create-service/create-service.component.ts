@@ -456,15 +456,17 @@ export class CreateServiceComponent implements OnInit {
 
     // upload file
     const linkImg = await this.handleSaveFile();
+    console.log(linkImg);
+    
 
     // save attributes
-    await this.handleSaveAttributes(service_id);
+    this.handleSaveAttributes(service_id);
 
     // create form file
-    await this.handleSaveFormFile(linkImg,service_id,Number(this.createServiceForm.controls['department'].value.data));
+   this.handleSaveFormFile(linkImg,service_id,Number(this.createServiceForm.controls['department'].value.data));
 
     // create proceduralstep
-    await this.handleSaveSteps(service_id);
+    this.handleSaveSteps(service_id);
 
     // CreateAttribute
     setTimeout(() => {
