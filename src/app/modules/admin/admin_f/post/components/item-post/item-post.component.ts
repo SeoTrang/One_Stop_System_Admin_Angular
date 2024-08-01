@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { User } from '@core/models/user';
 import { AuthService } from '@core/services/auth.service';
+import { PostService } from '@core/services/post.service';
 import { environment } from '@env';
 import { Officer } from '@modules/admin/admin_f/officer/interface/officer.interface';
 
@@ -16,7 +17,8 @@ export class ItemPostComponent implements OnInit {
   apiUrl: string = environment.api;
   userInfor: Officer;
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private postService: PostService
   ) { }
 
   ngOnInit(): void {
@@ -27,9 +29,27 @@ export class ItemPostComponent implements OnInit {
     
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['post']) {
+      console.log(this.post);
+      
+    }
+  }
 
   hasUserReacted(): boolean {
     return this.post.reactions.some((reaction: any) => reaction.user_id === this.userInfor.id && reaction.type_user == "officer");
+  }
+
+  handleDeleteReaction(){
+    
+    return this.postService.deleteReaction(Number(this.post.id)).subscribe({
+      next: (data) => {
+
+      },
+      error: (err) => {
+
+      }
+    });
   }
 
   handleReaction(){
@@ -37,6 +57,18 @@ export class ItemPostComponent implements OnInit {
       user_id: this.userInfor.id,
       type_user: "officer"
     }]
+
+
+    // handle create reaciton
+    return this.postService.createReaction(Number(this.post.id)).subscribe({
+      next: (data) => {
+
+      },
+
+      error: (err)=> {
+
+      }
+    })
   }
 
 }

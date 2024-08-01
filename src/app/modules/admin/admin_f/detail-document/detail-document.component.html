@@ -132,7 +132,7 @@
                         2. Hoạt động
                     </div>
                 </div>
-                <div class="content-activity-trace">
+                <div class="content-activity-trace" *ngIf="documentActivityTrace.length > 0">
                     <p-table [value]="documentActivityTrace" [tableStyle]="{ 'min-width': '50rem', 'width': '100%' }">
                         <ng-template pTemplate="header">
                             <tr>

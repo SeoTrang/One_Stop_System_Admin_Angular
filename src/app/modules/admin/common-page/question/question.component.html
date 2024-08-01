@@ -50,7 +50,7 @@
 
         <div class="content-list-question mt-3">
 
-            <div class="message-item p-2">
+            <!-- <div class="message-item p-2">
                 <div class="flex items-center cursor-pointer">
                     <div class="row-index" style="min-width: 30px;">
                         1
@@ -84,43 +84,44 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="message-item p-2">
-                <div class="flex items-center cursor-pointer">
+            <div *ngFor="let item of conversations; index as i" class="message-item p-2">
+                <a [routerLink]="'/manager/admin/detail-question/'+item.id" class="flex items-center cursor-pointer item-conversation">
                     <div class="row-index" style="min-width: 30px;">
-                        2
+                        {{i + 1}}
                     </div>
                     <div class="w-full flex items-center">
                         <div class="user-infor-left w-2/12">
                             <div class="flex">
                                 <div class="avatar-common">
-                                    <img src="http://localhost:3000/uploads/common/1.jpg" alt="">
+                                    <img [src]="api + item.user.avatar" alt="">
                                 </div>
                                 <div class="user-short-info ml-3">
-                                    <div class="name common-word font-medium"> Ma Seo Tráng </div>
-                                    <div class="department-name text-sm blur-md-word"> Tự động hóa </div>
+                                    <div class="name common-word font-medium"> {{item.user.name}} </div>
+                                    <div class="department-name text-sm blur-md-word"> {{item.user.faculty.name}} </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="message w-9/12">
+                        <div class="message w-8/12">
                             <div class="content-message">
-                                CDNetworks Unveils 10 Tbps Capacity Upgrade for Enhanced South & Southeast Asia Network Performance CDNetworks Unveils 10 Tbps Capacity Upgrade for Enhanced South & Southeast Asia Network Performance CDNetworks Unveils 10 Tbps Capacity Upgrade for Enhanced South & Southeast Asia Network Performance CDNetworks Unveils 10 Tbps Capacity Upgrade for Enhanced South & Southeast Asia Network Performance
+                                {{item.latestQuestions.content}}
                             </div>
                         </div>
-
-                        <div class="w-1/12">
+            
+                        <div class="w-2/12">
                             <span>
                                 <i class="fa-regular fa-clock"></i>
                             </span>
                             <span>
-                                18/5/2024
+                                {{item.latestQuestions.created_at}}
                             </span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
+            
             
         </div>
     </div>

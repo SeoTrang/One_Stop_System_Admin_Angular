@@ -22,4 +22,14 @@ export class PostService {
     getPost(): Observable<Post[]>{
         return this.http.get<Post[]>(environment.api+'/post');
     }
+
+    createReaction(post_id: number): Observable<any>{
+        return this.http.post<any>(environment.api+'/post-reaction/'+post_id,{});
+    }
+
+    deleteReaction(post_id: number): Observable<any>{
+        return this.http.delete<any>(environment.api+'/post-reaction/'+post_id,{});
+    }
+
+    
 }

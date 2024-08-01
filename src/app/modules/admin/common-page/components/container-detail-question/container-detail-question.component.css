@@ -4,6 +4,68 @@
     margin-right: 5px;
 }
 
+#container-detail-question .section-img-preview .item .p-image > img{
+    width: 80px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#container-detail-question .media-content .item .img-file{
+    width: 50px;
+    background-image: url(https://chat.zalo.me/assets/icon-file-empty.6796cfae2f36f6d44242f7af6104f2bb.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 53px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+}
+
+
+#container-detail-question .media-content .item .img-file:hover:before {
+    content: ''; /* Thêm một phần tử giả để chứa biểu tượng tải xuống */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Tạo một lớp mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* Kích thước của biểu tượng tải xuống */
+    cursor: pointer;
+    transition: background 0.3s ease; /* Hiệu ứng chuyển đổi màu nền */
+}
+
+#container-detail-question .media-content .item .img-file:hover:before:hover {
+    background: rgba(0, 0, 0, 0.7); /* Thay đổi màu nền khi hover */
+}
+
+#container-detail-question .media-content .item .img-file:hover:before i {
+    color: white; /* Màu biểu tượng tải xuống */
+}
+
+#container-detail-question .media-content .item .img-file:hover:before i:hover {
+    transform: scale(1.2); /* Hiệu ứng phóng to biểu tượng khi hover */
+}
+
+#container-detail-question .media-content .item .img-file .icon-dowload-file{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left:40%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+#container-detail-question .media-content .item .img-file:hover .icon-dowload-file{
+    display: block;
+}
+
 /* #container-detail-question .media-content svg{
     width: 97%;
     border-radius: 10px;
@@ -13,3 +75,51 @@
     width:  20px;
     height: 20px;
 }
+
+
+
+/* 1. Tổng thể của thanh cuộn */
+#container-detail-question .container-question {
+    max-height: 60vh;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Firefox */
+}
+
+/* 2. Toàn bộ thanh cuộn (dành cho WebKit) */
+#container-detail-question .container-question::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* 3. Background của thanh cuộn */
+#container-detail-question .container-question::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* 4. Tay cầm của thanh cuộn */
+#container-detail-question .container-question::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1; /* khoảng trống xung quanh tay cầm */
+}
+
+/* 5. Hiệu ứng hover cho tay cầm của thanh cuộn */
+#container-detail-question .container-question::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+#container-detail-question .container-question .content-message{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#container-detail-question .container-question::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* #container-detail-question .container-question */

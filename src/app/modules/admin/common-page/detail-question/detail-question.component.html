@@ -45,27 +45,27 @@
                     </div>
                 </div>
                 <div class="list-question mt-3">
-                    <div class="message-item pt-3 pb-3 pl-2 pr-2">
-                        <div class="cursor-pointer">
+                    <div *ngFor="let item of conversations; index as i" class="message-item pt-3 pb-3 pl-2 pr-2">
+                        <a [routerLink]="'/manager/admin/detail-question/'+item.id" class="cursor-pointer item-conversation">
                                 <div class="user-infor-left">
                                     <div class="flex">
                                         <div class="avatar-common" style="min-width: 40px;">
-                                            <img src="http://localhost:3000/uploads/common/1.jpg" alt="">
+                                            <img [src]="api+item.user.avatar" alt="">
                                         </div>
                                         <div class="user-short-info ml-3">
-                                            <div class="name common-word font-medium"> Ma Seo Tráng </div>
+                                            <div class="name common-word font-medium"> {{item.user.name}} </div>
                                             <div class="department-name text-sm blur-md-word font-medium content-message">
-                                                Web/App Developer (Java, Javascript, PHP) and 2 more jobs for you
+                                                {{item.latestQuestions.content}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                             
-                        </div>
+                        </a>
                     </div>
 
-                    <div class="message-item pt-3 pb-3 pl-2 pr-2">
+                    <!-- <div class="message-item pt-3 pb-3 pl-2 pr-2">
                         <div class="cursor-pointer">
                                 <div class="user-infor-left">
                                     <div class="flex">
@@ -83,7 +83,7 @@
                                 
                             
                         </div>
-                    </div>
+                    </div> -->
         
            
                 </div>
@@ -91,7 +91,7 @@
 
             <div class="section-right  w-8/12">
                <div class="md:ml-3">
-                <app-container-detail-question></app-container-detail-question>
+                <app-container-detail-question [conversation_id]="conversation_id"></app-container-detail-question>
                </div>
             </div>
         </div>

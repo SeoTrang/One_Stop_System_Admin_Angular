@@ -36,7 +36,7 @@ import { LangChangeEvent } from '@ngx-translate/core/lib/translate.service';
 } )
 @AutoUnsubscribeOnDestroy()
 export class DashboardComponent implements OnInit {
-
+	
 	isLoading = false;
 
 	menuCollapse = false;

@@ -6,7 +6,7 @@
         <ng-container *ngIf="contents.length == 1">
             <ng-container *ngFor="let content of contents">
                 <ng-container *ngIf="content.type == 'img'">
-                    <img class="rounded-md" [src]="apiUrl+content.content" alt="hhhha" />
+                    <img class="w-full rounded-md" [src]="apiUrl+content.content" alt="hhhha" />
                 </ng-container>
                 <ng-container *ngIf="content.type == 'video'">
                     <video class="w-full rounded-md" controls>

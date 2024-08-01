@@ -1,9 +1,45 @@
+/* 1. Tổng thể của thanh cuộn */
+#detail-question .list-question {
+    max-height: 60vh;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #888 #f1f1f1; /* Firefox */
+}
+
+/* 2. Toàn bộ thanh cuộn (dành cho WebKit) */
+#detail-question .list-question::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+/* 3. Background của thanh cuộn */
+#detail-question .list-question::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* 4. Tay cầm của thanh cuộn */
+#detail-question .list-question::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 3px solid #f1f1f1; /* khoảng trống xung quanh tay cầm */
+}
+
+/* 5. Hiệu ứng hover cho tay cầm của thanh cuộn */
+#detail-question .list-question::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
 #detail-question .list-question .content-message{
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+#detail-question .list-question::-webkit-scrollbar-button {
+    display: none;
 }
 
 /* #detail-question .message-item{
@@ -14,3 +50,11 @@
     background-color: rgb(247 248 250);
 }
 
+
+#detail-question .item-conversation{
+    color: var(--text-color);
+}
+
+#detail-question .item-conversation:hover{
+    text-decoration: none;
+}

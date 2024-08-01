@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { ContentPost, CreatePost } from '@core/models/post';
 import { DepartmentService } from '@core/services/deparment.service';
 import { File2Service } from '@core/services/file2.service';
@@ -22,9 +22,11 @@ class DataTypeQuestion {
   encapsulation: ViewEncapsulation.None,
 })
 export class CreatePostComponent implements OnInit {
+  @Input() onloadData: () => void;
   dataTypeQuestions: any[] = [
     { name: 'Câu hỏi', code: 'Câu hỏi' },
     { name: 'Thắc mắc', code: 'Thắc mắc' },
+    { name: 'Thông báo', code: 'Thông báo' },
   ];
   selectedTypeQuestion: DataTypeQuestion;
   dataDepartments: DataDepartment[] = [];
@@ -137,13 +139,25 @@ export class CreatePostComponent implements OnInit {
       this.videoFile != null ||
       this.ortherFile != null
     ) {
-      fileUpload = await this.file2Service.uploadFiles(this.imgFile);
-      if (fileUpload.length <= 0) {
-        this.notificationService.toastError(
-          'Lỗi trong quá trình tải ảnh',
-          'Thông báo'
-        );
-        return null;
+      if(this.imgFile){
+        fileUpload = await this.file2Service.uploadFiles(this.imgFile);
+        if (fileUpload.length <= 0) {
+          this.notificationService.toastError(
+            'Lỗi trong quá trình tải ảnh',
+            'Thông báo'
+          );
+          return null;
+        }
+      }
+      if(this.videoFile){
+        fileUpload = await this.file2Service.uploadFiles(this.videoFile);
+        if (fileUpload.length <= 0) {
+          this.notificationService.toastError(
+            'Lỗi trong quá trình tải ảnh',
+            'Thông báo'
+          );
+          return null;
+        }
       }
     }
     if (this.imgFile != null) {
@@ -191,7 +205,11 @@ export class CreatePostComponent implements OnInit {
     this.mediasPreviewUrl = null;
   }
 
+
+ 
+
   async handleSumit() {
+    // return this.onloadData();
     //  const contentPost:ContentPost[] = await this.handleUploadFile();
     //  console.log(contentPost);
 
@@ -204,13 +222,15 @@ export class CreatePostComponent implements OnInit {
 
     let createPost: CreatePost = new CreatePost(
       this.caption, ///caption
-      this.selectedTypeQuestion.code || null, // type question
-      Number(this.selectedDepartment.code) || null, //
+      this.selectedTypeQuestion?.code || null, // type question
+      Number(this.selectedDepartment?.code) || null, //
       linkContents
     );
 
+  
+
     this.loadingService.showLoading();
-    const savePost = this.postService.createPost(createPost).subscribe({
+    this.postService.createPost(createPost).subscribe({
       next: (res) => {
         setTimeout(() => {
           this.loadingService.hideLoading();
@@ -219,7 +239,10 @@ export class CreatePostComponent implements OnInit {
             'Thông báo'
           );
 
+          
+
           this.resetForm();
+          this.onloadData();
         }, 500);
       },
       error: (err) => {

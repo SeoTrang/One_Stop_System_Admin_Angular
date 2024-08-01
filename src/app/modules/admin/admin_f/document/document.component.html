@@ -128,16 +128,37 @@
                                        
                                         <div *ngIf="document?.proceduralStep?.department?.id == officer?.department?.id">
 
-                                            <div *ngIf="!checkIsMeReceived(document)">
-                                                <div *ngIf="checkIfReceived(document)">
-                                                    Đã có người tiếp nhận
+                                            <div *ngIf="document.status != 3">
+                                                <div *ngIf="!checkIsMeReceived(document)">
+                                                    <div *ngIf="checkIfReceived(document)">
+                                                        Đã có người tiếp nhận
+                                                    </div>
+                                                    <div (click)="handleReceivedDocument(document)" class="btn-receive" *ngIf="!checkIfReceived(document)">
+                                                        Tiếp nhận
+                                                    </div>
                                                 </div>
-                                                <div (click)="handleReceivedDocument(document)" class="btn-receive" *ngIf="!checkIfReceived(document)">
-                                                    Tiếp nhận
+
+                                                <div *ngIf="checkIsMeReceived(document)" class="service-action flex items-center">
+                                                    <a [routerLink]="'/manager/admin/detail-document/'+document.id" class="btn-action btn-view">
+                                                        
+                                                        <i class=" fa-solid fa-eye"></i>
+                                                    </a>
+                                                    <div (click)="onClickItemService(document.id)" (click)="menu2.toggle($event)" class="btn-action btn-more">
+                                                        <i  class="fa-solid fa-ellipsis-vertical"></i>
+                                                        
+                                                    </div>
+            
+            
+                                                    <!-- <div class="btn-action ml-2 mr-2 btn-edit">
+                                                        <i class=" fa-solid fa-pen-to-square"></i>
+                                                    </div>
+                                                    <div class="btn-action ml-2 mr-2 btn-delete">
+                                                        <i class=" fa-solid fa-trash"></i>
+                                                    </div> -->
                                                 </div>
                                             </div>
-                                            <div *ngIf="checkIsMeReceived(document)" class="service-action flex items-center">
-                                                <a [routerLink]="'/detail-document/'+document.id" class="btn-action btn-view">
+                                            <div *ngIf="document.status == 3" class="service-action flex items-center">
+                                                <a [routerLink]="'/manager/admin/detail-document/'+document.id" class="btn-action btn-view">
                                                     
                                                     <i class=" fa-solid fa-eye"></i>
                                                 </a>
@@ -145,15 +166,8 @@
                                                     <i  class="fa-solid fa-ellipsis-vertical"></i>
                                                     
                                                 </div>
-        
-        
-                                                <!-- <div class="btn-action ml-2 mr-2 btn-edit">
-                                                    <i class=" fa-solid fa-pen-to-square"></i>
-                                                </div>
-                                                <div class="btn-action ml-2 mr-2 btn-delete">
-                                                    <i class=" fa-solid fa-trash"></i>
-                                                </div> -->
                                             </div>
+                                            
                                         </div>
 
                                         <div *ngIf="document?.proceduralStep?.department?.id !== officer?.department?.id">

@@ -82,7 +82,7 @@ const routes: Routes = [
     component: QuestionComponent
   },
   {
-    path: 'detail-question/:question_id',
+    path: 'detail-question/:conversation_id',
     component: DetailQuestionComponent
   },
 ];
